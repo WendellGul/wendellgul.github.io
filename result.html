@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+
+    <title>Search Result</title> 
+    <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/result.css">
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="container">
+
+    <div id="hd" class="ue-clear">
+        <a href="index.html"><div class="logo">Nebulas Scholar</div></a>
+        <div class="inputArea">
+            <input type="text" class="searchInput" value="" />
+            <input type="button" class="searchButton" onclick="add_search()"/>
+        </div>
+    </div>
+    <div id="bd" class="ue-clear">
+        <div id="main">
+            <div class="resultArea">
+                <div class="searchFail hide"></div>
+                <div class="resultList hide">
+                    
+                    <div class="resultItem">
+                        <div class="itemHead">
+                            <a href=""  target="_blank" id="title">dsfasdfase</a>
+                            <span class="publish hide">-</span>
+                            <span class="publish hide" id="publish-value">000</span>
+                        </div>
+                        <div class="itemBody">
+                            <div class="keywords hide">
+                                <label>Keywords: </label>
+                                <span id="keywords-value">555</span>
+                            </div>
+                            <div class="abstract hide">
+                                <label>Abstract: </label>
+                                <span id="abstract-value">asdsadasdasd</span>
+                            </div>
+                        </div>
+                        <div class="itemFoot">
+                            <span class="info">
+                                <label class="authors hide">Authors: </label>
+                                <span class="authors hide" id="authors-value">111</span>
+                                <label class="date hide">发布时间：</label>
+                                <span class="date hide" id="date-value">222</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- 分页 -->
+                <div class="pagination ue-clear">
+                    <span class="curPage" hidden>10</span>
+                </div>
+                <!-- 相关搜索 -->
+
+            </div>
+
+        </div><!-- End of main -->
+    </div><!--End of bd-->
+</div>
+<script src=lib/jquery-3.3.1.min.js></script>
+<script src=lib/nebPay.js></script>
+<script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
+<script src=lib/nebulas.js></script>
+<script>
+
+    "use strict";
+
+    var dappAddress = "n1vaRqCXyyouhMGcDYQQTSASgai17vKv9Mf";
+    var idxAddress = "n1f1TmJqpMSiVLGSz1zX88cbcZQSvE5Usce";
+
+    //here we use neb.js to call the "get" function to search from the Dictionary
+    var nebulas = require("nebulas"),
+        Account = nebulas.Account,
+        neb = new nebulas.Neb();
+    neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+
+    function getParams(key) {
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        };
+
+    var search_text = getParams("search_text");
+    console.log(search_text);
+    $(".searchInput").val(search_text);
+
+    search();
+
+
+    function add_search() {
+        var url = "result.html?search_text=" + $(".searchInput").val();
+        location.href = url;
+    }
+
+
+    function search_idx() {
+        var from = Account.NewAccount().getAddressString();
+
+        var value = "0";
+        var nonce = "0"
+        var gas_price = "1000000"
+        var gas_limit = "2000000"
+        var callFunction = "get";
+        //var callArgs = "[\"" + $("#search_value").val() + "\"]"; //in the form of ["args"]
+        var arg = $(".searchInput").val()
+        var callArgs = JSON.stringify([arg]);
+        var contract = {
+            "function": callFunction,
+            "args": callArgs
+        }
+
+        neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
+            cbSearch(resp)
+        }).catch(function (err) {
+            //cbSearch(err)
+            console.log("error:" + err.message)
+        })
+
+    }
+
+    // 搜索功能
+    function search() {
+        // $("#search_value").val() 搜索框内的值
+
+        var from = Account.NewAccount().getAddressString();
+
+        var value = "0";
+        var nonce = "0"
+        var gas_price = "1000000"
+        var gas_limit = "2000000"
+        var callFunction = "get";
+        //var callArgs = "[\"" + $("#search_value").val() + "\"]"; //in the form of ["args"]
+        var arg = $(".searchInput").val()
+
+        var data = [];
+
+        var callArgs = JSON.stringify([arg]);
+        var contract = {
+            "function": callFunction,
+            "args": callArgs
+        }
+
+        neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
+            cbSearch(resp)
+        }).catch(function (err) {
+            //cbSearch(err)
+            console.log("error:" + err.message)
+        })
+
+    }
+
+    //return of search,
+    function cbSearch(resp) {
+        var result = resp.result    ////resp is an object, resp.result is a JSON string
+        console.log("return of rpc call: " + JSON.stringify(result))
+
+        var resultString = JSON.stringify(result);
+        if(resultString.search("title") !== -1){
+            result = JSON.parse(result)
+            $(".resultList").removeClass("hide");
+            $("#title").text(result.title);
+            if(result.keywords.length !== 0 && result.keywords[0] !== "") {
+                $(".keywords").removeClass("hide");
+                $("#keywords-value").text(result.keywords);
+            }
+            if(result.abstract) {
+                $(".abstract").removeClass("hide");
+                $("#abstract-value").text(result.abstract);
+            }
+            if(result.authors.length !== 0 && result.authors[0] !== "") {
+                $(".authors").removeClass("hide");
+                $("#authors-value").text(result.authors);
+            }
+            if(result.publish) {
+                $(".publish").removeClass("hide");
+                $("#publish-value").text(result.publish);
+            }
+            if(result.date) {
+                $(".date").removeClass("hide");
+                $("#date-value").text(result.date);
+            }
+            if(result.link) {
+                $("#title").attr("href", result.link);
+            }
+
+        }
+        if(resultString.search("null") !== -1 || resultString.search("error") !== -1){
+            $(".totalResult").text("0");
+            $(".resultList").addClass("hide");
+        }
+    }
+
+</script>
+</body>
+
+</html>

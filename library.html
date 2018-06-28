@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+
+    <title>Nebulas Scholar</title>
+    <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <style>
+
+        .center {
+            width: 100%;
+            background: gray;
+            position: absolute;
+            height: 40px;
+        }
+
+        .logo {
+            float: left;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+
+        .name {
+            width: 200px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .search_div {
+            float: left;
+            width: 800px;
+            height: 100px;
+        }
+
+        #search_text {
+            width: 600px;
+        }
+
+        .hide{
+            display: none;
+        }
+
+        .main{
+            height: 1500px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="main">
+
+    <div class="center">
+        <div class="logo">
+            <div class="name">NEBULAS SCHLOR</div>
+        </div>
+        <div class="search_div">
+            <div class="search">
+                <input type="text" id="search_text">
+                <button id=search>Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail">
+        <div class="title_div hide">
+            <label>Title</label>
+            <input type="text" id="title">
+        </div>
+        <div class="keywords_div hide">
+            <label>Keywords</label>
+            <input type="text" id="keywords" value="split by ';'">
+        </div>
+        <div class="abstract_div hide">
+            <label>Abstract</label>
+            <input type="text" id="abstract">
+        </div>
+        <div class="authors_div hide">
+            <label>Authors</label>
+            <input type="text" id="authors" value="split by ';'">
+        </div>
+        <div class="publish_div hide">
+            <label>Publish</label>
+            <input type="text" id="publish">
+        </div>
+        <div class="date_div hide">
+            <label>Date</label>
+            <input type="date" id="date">
+        </div>
+        <div class="link_div hide">
+            <label>Link Address</label>
+            <input type="text" id="link">
+        </div>
+    </div>
+
+    <div class="result_fail hide">
+        Failed to find related information.
+    </div>
+
+    <div class="add_detail hide">
+        <button id="back">Back</button>
+        <button id="submit">Submit</button>
+    </div>
+</div>
+<script src=lib/jquery-3.3.1.min.js></script>
+<script src=lib/nebPay.js></script>
+<script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
+<script src=lib/nebulas.js></script>
+<script>
+
+    "use strict";
+
+    var dappAddress = "n1vaRqCXyyouhMGcDYQQTSASgai17vKv9Mf";
+
+    //here we use neb.js to call the "get" function to search from the Dictionary
+    var nebulas = require("nebulas"),
+        Account = nebulas.Account,
+        neb = new nebulas.Neb();
+    neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+
+    // 搜索功能
+    $("#search").click(function(){
+        // $("#search_value").val() 搜索框内的值
+        
+
+        var from = Account.NewAccount().getAddressString();
+
+        var value = "0";
+        var nonce = "0"
+        var gas_price = "1000000"
+        var gas_limit = "2000000"
+        var callFunction = "get";
+        //var callArgs = "[\"" + $("#search_value").val() + "\"]"; //in the form of ["args"]
+        var arg = $("#search_text").val()
+        var callArgs = JSON.stringify([arg]);
+        var contract = {
+            "function": callFunction,
+            "args": callArgs
+        }
+
+        neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
+            cbSearch(resp)
+        }).catch(function (err) {
+            //cbSearch(err)
+            console.log("error:" + err.message)
+        })
+
+    })
+
+    //return of search,
+    function cbSearch(resp) {
+        var result = resp.result    ////resp is an object, resp.result is a JSON string
+        console.log("return of rpc call: " + JSON.stringify(result))
+
+        var resultString = JSON.stringify(result);
+        if(resultString.search("title") !== -1){
+            result = JSON.parse(result)
+            $(".add_banner").addClass("hide");
+            $(".result_faile").addClass("hide");
+
+            if(result.keywords.length !== 0 && result.keywords[0] !== "") {
+                $(".keywords_div").removeClass("hide");
+                $("#keywords").text(result.keywords);
+            }
+            if(result.abstract) {
+                $(".abstract_div").removeClass("hide");
+                $("#abstract").text(result.abstract);
+            }
+            if(result.authors.length !== 0 && result.authors[0] !== "") {
+                $(".authors_div").removeClass("hide");
+                $("#authors").text(result.authors);
+            }
+            if(result.publish) {
+                $(".publish_div").removeClass("hide");
+                $("#publish").text(result.publish);
+            }
+            if(result.date) {
+                $(".date_div").removeClass("hide");
+                $("#date").text(result.date);
+            }
+            if(result.link) {
+                $(".link_div").removeClass("hide");
+                $("#link").text(result.link);
+            }
+
+        }
+        if(resultString.search('"null"') !== -1 || resultString.search("error") !== -1){
+            $(".keywords_div").addClass("hide");
+            $(".abstract_div").addClass("hide");
+            $(".authors_div").addClass("hide");
+            $(".publish_div").addClass("hide");
+            $(".date_div").addClass("hide");
+            $(".link_div").addClass("hide");
+            $(".add_banner").addClass("hide");
+            $(".result_fail").removeClass("hide");
+
+        }
+    }
+
+    $("#upload").click(function() {
+        $(".result_fail").addClass("hide");
+        $(".keywords_div").removeClass("hide");
+        $(".abstract_div").removeClass("hide");
+        $(".authors_div").removeClass("hide");
+        $(".publish_div").removeClass("hide");
+        $(".date_div").removeClass("hide");
+        $(".link_div").removeClass("hide");
+        $("#keywords").text("");
+        $("#abstract").text("");
+        $("#authors").text("");
+        $("#publish").text("");
+        $("#date").text("");
+        $("#link").text("");
+        $(".add_detail").removeClass("hide");
+        $(".menu").addClass("hide");
+    })
+
+    $("#back").click(function() {
+        $(".result_fail").addClass("hide");
+        $(".keywords_div").addClass("hide");
+        $(".abstract_div").addClass("hide");
+        $(".authors_div").addClass("hide");
+        $(".publish_div").addClass("hide");
+        $(".date_div").addClass("hide");
+        $(".link_div").addClass("hide");
+        $(".add_detail").addClass("hide");
+        $(".menu").removeClass("hide");
+    })
+
+    var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
+    var nebPay = new NebPay();
+    var serialNumber
+    //var callbackUrl = NebPay.config.mainnetUrl;   //如果合约在主网,则使用这个
+    var callbackUrl = NebPay.config.testnetUrl;   //
+
+    $("#submit").click(function() {
+
+        var to = dappAddress;
+        var value = "0";
+        var callFunction = "upload"
+        //var callArgs = "[\"" + $("#search_value").val() + "\",\"" + $("#add_value").val() + "\"]"
+        var title = $("#title").val(),
+            keywords = $("#keywords").val(),
+            abstract = $("#abstract").val(),
+            authors = $("#authors").val(),
+            publish = $("#publish").val(),
+            date = $("#date").val(),
+            link = $("#link").val();
+        var callArgs = JSON.stringify([title, keywords, abstract, authors, publish, date, link]);
+
+        serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+            listener: cbSubmit,       //设置listener, 处理交易返回信息
+            callback: callbackUrl
+        });
+
+        intervalQuery = setInterval(function () {
+            funcIntervalQuery();
+        }, 10000);
+    });
+
+    var intervalQuery
+
+    function funcIntervalQuery() {
+        var options = {
+            callback: callbackUrl
+        }
+        nebPay.queryPayInfo(serialNumber,options)   //search transaction result from server (result upload to server by app)
+            .then(function (resp) {
+                console.log("tx result: " + resp)   //resp is a JSON string
+                var respObject = JSON.parse(resp)
+                if(respObject.code === 0){
+                    clearInterval(intervalQuery);
+                    alert(`upload ${$("#title").val()} succeed!`);
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
+
+    function cbSubmit(resp) {
+        console.log("response of submit: " + JSON.stringify(resp))
+        var respString = JSON.stringify(resp);
+        if(respString.search("rejected by user") !== -1){
+            clearInterval(intervalQuery)
+            alert(respString)
+        }else if(respString.search("txhash") !== -1){
+            //alert("wait for tx result: " + resp.txhash)
+        }
+    }
+
+</script>
+</body>
+
+</html>
