@@ -1,1 +1,286 @@
-Hello Github.io
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <title>Nebulas Scholar</title>
+    <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <style>
+    .library {
+        float: left;
+    }
+
+    .center {
+        position: absolute;
+        width: 1000px;
+        height: 400px;
+        margin: auto;
+        top: 20%;
+        left: 0;
+        right: 0;
+        border: 0;
+    }
+
+    .logo {
+        width: 60%;
+        height: 150px;
+        margin: auto;
+    }
+
+    .name {
+        text-align: center;
+        font-size: 66px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .main {
+        height: 1500px;
+    }
+
+    .search_div {
+        width: 800px;
+        height: 100px;
+        margin: auto;
+        text-align: center;
+    }
+
+    #search_text {
+        width: 600px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="menu">
+            <div class="library">
+                <button id="library_bt" data-toggle="modal" data-target="#myLibModal">My Library</button>
+            </div>
+            <div class="upload">
+                <button id="upload_bt" data-toggle="modal" data-target="#myModal">Upload</button>
+            </div>
+        </div>
+        <div class="noExtension hide" id="noExtension">
+            NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use Nebulas Scholar
+        </div>
+        <div class="center">
+            <div class="logo">
+                <div class="name">NEBULAS SCHLOR</div>
+            </div>
+            <div class="search_div">
+                <div class="search">
+                    <input type="text" id="search_text">
+                    <button id=search>Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Upload Article</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="title_div">
+                            <label>Title</label>
+                            <input type="text" id="title">
+                        </div>
+                        <div class="keywords_div">
+                            <label>Keywords</label>
+                            <input type="text" id="keywords" value="split by ';'">
+                        </div>
+                        <div class="abstract_div">
+                            <label>Abstract</label>
+                            <input type="text" id="abstract">
+                        </div>
+                        <div class="authors_div">
+                            <label>Authors</label>
+                            <input type="text" id="authors" value="split by ';'">
+                        </div>
+                        <div class="publish_div">
+                            <label>Publish</label>
+                            <input type="text" id="publish">
+                        </div>
+                        <div class="date_div">
+                            <label>Date</label>
+                            <input type="date" id="date">
+                        </div>
+                        <div class="link_div">
+                            <label>Link Address</label>
+                            <input type="text" id="link">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="submit">Submit</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal -->
+        </div>
+        <div class="modal fade" id="myLibModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">My Library</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="resultList">
+                            <div class="resultItem">
+                                <div class="itemHead">
+                                    <a href="" target="_blank" id="title">dsfasdfase</a>
+                                    <span class="publish">-</span>
+                                    <span class="publish" id="publish-value">000</span>
+                                </div>
+                                <div class="itemBody">
+                                    <div class="keywords">
+                                        <label>Keywords: </label>
+                                        <span id="keywords-value">555</span>
+                                    </div>
+                                    <div class="abstract">
+                                        <label>Abstract: </label>
+                                        <span id="abstract-value">asdsadasdasd</span>
+                                    </div>
+                                </div>
+                                <div class="itemFoot">
+                                    <span class="info">
+                                <label class="authors">Authors: </label>
+                                <span class="authors" id="authors-value">111</span>
+                                    <label class="date">Date: </label>
+                                    <span class="date" id="date-value">222</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal -->
+        </div>
+    </div>
+    <script src=lib/jquery-3.3.1.min.js></script>
+    <script src=lib/nebPay.js></script>
+    <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
+    <script src=lib/nebulas.js></script>
+    <script src="lib/md5.js"></script>
+    <script>
+    $("#search").click(function() {
+        text = $("#search_text").val();
+        if (text.trim().length === 0)
+            return;
+        url = "result.html?search_text=" + $("#search_text").val();
+        location.href = url;
+    });
+
+    var dappAddress = "n1vaRqCXyyouhMGcDYQQTSASgai17vKv9Mf",
+        dappIdxAddress = "n1e2fbwamubugLGL644qaz7bMo9eXDUC5qC";
+
+    var nebulas = require("nebulas"),
+        Account = nebulas.Account,
+        neb = new nebulas.Neb();
+    neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+
+    var NebPay = require("nebpay"); //https://github.com/nebulasio/nebPay
+    var nebPay = new NebPay();
+    var serialNumber
+    //var callbackUrl = NebPay.config.mainnetUrl;   //如果合约在主网,则使用这个
+    var callbackUrl = NebPay.config.testnetUrl; //
+
+    $("#submit").click(function() {
+        title = $("#title").val();
+        var md5_value = md5(title + Date.parse(new Date()));
+        submitIndex(md5_value);
+        submitData(md5_value);
+    });
+
+    function submitIndex(md5_value) {
+        var to = dappIdxAddress;
+        var value = "0";
+        var callFunction = "put"
+        //var callArgs = "[\"" + $("#search_value").val() + "\",\"" + $("#add_value").val() + "\"]"
+        var title = $("#title").val();
+
+        var callArgs = JSON.stringify([
+            [title.trim()], md5_value
+        ]);
+        serialNumber = nebPay.call(to, value, callFunction, callArgs, { //使用nebpay的call接口去调用合约,
+            listener: cbSubmit, //设置listener, 处理交易返回信息
+            callback: callbackUrl
+        });
+
+        intervalQuery = setInterval(function() {
+            funcIntervalQuery();
+        }, 10000);
+    }
+
+    function submitData(md5_value) {
+        var to = dappAddress;
+        var value = "0";
+        var callFunction = "upload"
+        //var callArgs = "[\"" + $("#search_value").val() + "\",\"" + $("#add_value").val() + "\"]"
+        var title = $("#title").val(),
+            keywords = $("#keywords").val(),
+            abstract = $("#abstract").val(),
+            authors = $("#authors").val(),
+            publish = $("#publish").val(),
+            date = $("#date").val(),
+            link = $("#link").val();
+        var callArgs = JSON.stringify([md5_value, title, keywords, abstract, authors, publish, date, link]);
+
+        serialNumber = nebPay.call(to, value, callFunction, callArgs, { //使用nebpay的call接口去调用合约,
+            listener: cbSubmit, //设置listener, 处理交易返回信息
+            callback: callbackUrl
+        });
+
+        intervalQuery = setInterval(function() {
+            funcIntervalQuery();
+        }, 10000);
+    }
+
+    var intervalQuery
+
+    function funcIntervalQuery() {
+        var options = {
+            callback: callbackUrl
+        }
+        nebPay.queryPayInfo(serialNumber, options) //search transaction result from server (result upload to server by app)
+            .then(function(resp) {
+                console.log("tx result: " + resp) //resp is a JSON string
+                var respObject = JSON.parse(resp)
+                if (respObject.code === 0) {
+                    clearInterval(intervalQuery);
+                    alert(`upload ${$("#title").val()} succeed!`);
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+    }
+
+
+    function cbSubmit(resp) {
+        console.log("response of submit: " + JSON.stringify(resp))
+        var respString = JSON.stringify(resp);
+        if (respString.search("rejected by user") !== -1) {
+            clearInterval(intervalQuery)
+            alert(respString)
+        } else if (respString.search("txhash") !== -1) {
+            //alert("wait for tx result: " + resp.txhash)
+        }
+    }
+    </script>
+</body>
+
+</html>
