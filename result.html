@@ -10,6 +10,7 @@
     <title>Search Result</title>
     <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css">
     <style>
     .hide {
         display: none;
@@ -27,6 +28,22 @@
 
     #search_text {
         height: 45px;
+    }
+
+    .searchFail {
+        text-align: center; /*让div内部文字居中*/
+        width: 800px;
+        height: 350px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    #failText {
+        font-size: 50px;
     }
     </style>
 </head>
@@ -53,6 +70,9 @@
         <div class="center">
             <div id="result">
             </div>
+        </div>
+        <div class="searchFail hide">
+            <p id="failText"></p>
         </div>
     </div>
     <footer class="footer text-center">
@@ -88,6 +108,7 @@
                 <span class="date">Date: </span>
                 <span class="date value">${date}</span>
             </div>
+            <div>============================================</div>
             
         </div>
     </script>
@@ -142,11 +163,11 @@
             "args": callArgs
         }
 
-        neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function(resp) {
+        neb.api.call(from, idxAddress, value, nonce, gas_price, gas_limit, contract).then(function(resp) {
             cbSearchIdx(resp);
         }).catch(function(err) {
             //cbSearch(err)
-            console.log("error:" + err.message)
+            console.log("index error:" + err.message)
         });
 
     }
@@ -167,6 +188,8 @@
         var data = [];
 
         var callArgs = JSON.stringify([keys]);
+
+        console.log(callArgs);
         var contract = {
             "function": callFunction,
             "args": callArgs
@@ -176,7 +199,7 @@
             cbSearch(resp)
         }).catch(function(err) {
             //cbSearch(err)
-            console.log("error:" + err.message)
+            console.log("data error:" + err.message)
         });
 
     }
@@ -188,14 +211,15 @@
         var resultString = JSON.stringify(result);
 
         if (resultString.search("null") !== -1 || resultString.search("error") !== -1) {
-            $(".totalResult").text("0");
-            $(".resultList").addClass("hide");
+            $(".searchFail").removeClass("hide");
+            $("#failText").text("Oooops! Nothing to be found!");
         } else {
             result = JSON.parse(result)
-            keys = []
+            var keys = []
             for (var i = 0; i < result.length; i++) {
-                keys.push(result[i].value);
+                keys.push(result[i]);
             }
+            console.log(keys);
             search(keys);
         }
 
@@ -205,16 +229,19 @@
     function cbSearch(resp) {
         var result = resp.result ////resp is an object, resp.result is a JSON string
         console.log("return of search data call: " + JSON.stringify(result))
-
-        var resultString = JSON.stringify(result);
-        if (resultString.search("null") !== -1 || resultString.search("error") !== -1) {
-            $(".totalResult").text("0");
-            $(".resultList").addClass("hide");
+        result = JSON.parse(result)
+        var find = false
+        for(var r of result) {
+            if(r) {
+                console.log(r)
+                $("#template-results").tmpl(r).appendTo("#result")
+                find = true
+            }
         }
-        else {
-            result = JSON.parse(result)
-            $("#template-results").tmpl(result).appendTo("#result")
-        }
+        if (!find) {
+            $(".searchFail").removeClass("hide");
+            $("#failText").text("Oooops! Nothing to be found!");
+        }        
     }
     </script>
 </body>
