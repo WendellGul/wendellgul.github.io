@@ -1,0 +1,144 @@
+.nav-button {
+    margin: 0 10px;
+    padding: .375rem .75rem;
+    background: none;
+    color: white;
+    border: none;
+}
+
+
+button:before {
+    color: #337ab7;
+    opacity:0;
+}
+
+button:hover:before {
+    position: absolute;
+    opacity:1;
+}
+
+button:after {
+    color: #324b4e;
+}
+
+button:hover:after{
+    opacity:0;
+}
+
+
+.bar {
+    position: absolute;
+    padding: 30px 0;
+    width: 300px;
+    margin: 0 auto;
+    left: 49%;
+    top: 25%;
+}
+
+.bar input {
+    width: 450px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #324B4E;
+    transition: .3s linear;
+    float: right;
+}
+
+.bar button {
+    position: absolute;
+    background: none;
+    border: none;
+    right: -50px;
+    top: 30px;
+    font-size: xx-large;
+    color: white;
+    border: none;
+    outline: none !important;
+}
+
+.bar button:before, .bar button:after {
+    content: "\f002";
+    font-family: FontAwesome;
+}
+
+.center {
+    position: absolute;
+    width: 1000px;
+    height: 400px;
+    margin: auto;
+    top: 20%;
+    left: 0;
+    right: 0;
+    border: 0;
+}
+
+.logo {
+    width: 60%;
+    height: 150px;
+    margin: auto;
+}
+
+.name {
+    text-align: center;
+    font-size: 66px;
+}
+
+.hide {
+    display: none;
+}
+
+.main {
+    height: 100%;
+}
+
+
+#search_text {
+    width: 600px;
+}
+
+footer {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #f5f5f5;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+footer p {
+    margin-bottom: 0rem;
+    width: 200px;
+    left: 43%;
+    position: absolute;
+}
+
+.modal-dialog {
+    margin: 11rem auto;
+    width: 600px;
+}
+
+.item {
+    text-align: center;
+}
+
+.upload-data input {
+
+}
+
+.up-input {
+    margin: 0 10px;
+    padding: .375rem .75rem;
+    border-bottom: 2px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 200px;
+    text-align: center;
+    color: grey;
+}
+
+.upload-data {
+    margin: 5px 65px;
+}

@@ -9,76 +9,36 @@
     <meta name="full-screen" content="yes">
     <title>Nebulas Scholar</title>
     <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
-    <style>
-    .library {
-        float: left;
-    }
-
-    .center {
-        position: absolute;
-        width: 1000px;
-        height: 400px;
-        margin: auto;
-        top: 20%;
-        left: 0;
-        right: 0;
-        border: 0;
-    }
-
-    .logo {
-        width: 60%;
-        height: 150px;
-        margin: auto;
-    }
-
-    .name {
-        text-align: center;
-        font-size: 66px;
-    }
-
-    .hide {
-        display: none;
-    }
-
-    .main {
-        height: 1500px;
-    }
-
-    .search_div {
-        width: 800px;
-        height: 100px;
-        margin: auto;
-        text-align: center;
-    }
-
-    #search_text {
-        width: 600px;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
-    <div class="main">
-        <div class="menu">
-            <div class="library">
-                <button id="library_bt" data-toggle="modal" data-target="#myLibModal">My Library</button>
-            </div>
-            <div class="upload">
-                <button id="upload_bt" data-toggle="modal" data-target="#myModal">Upload</button>
+    <header>
+        <div class="navbar navbar-dark box-shadow" style="background-color: black;">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <i class="fa fa-book"></i>
+                    <strong>&nbsp; Nebulas Scholar</strong>
+                </a>
+                <div class="navbar-brand d-flex align-items-center collapse">
+                    <button class="btn nav-button" type="button" id="library_bt" data-toggle="modal" data-target="#myLibModal" ><strong>Library</strong></button>
+                    <button class="btn nav-button" type="button" id="upload_bt" data-toggle="modal" data-target="#myModal"><strong>Upload</strong></button>
+                </div>
             </div>
         </div>
+    </header>
+    <div class="main">
         <div class="noExtension hide" id="noExtension">
             NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use Nebulas Scholar
         </div>
         <div class="center">
             <div class="logo">
-                <div class="name">NEBULAS SCHLOR</div>
+                <div class="name">Nebulas Scholar</div>
             </div>
-            <div class="search_div">
-                <div class="search">
-                    <input type="text" id="search_text">
-                    <button id=search>Search</button>
-                </div>
+            <div class="search bar">
+                <input type="text" id="search_text" autocomplete="off" placeholder="   Please input the keywords...">
+                <button type="submit" id="search"></button>
             </div>
         </div>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -88,33 +48,37 @@
                         <h4 class="modal-title" id="myModalLabel">Upload Article</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="title_div">
-                            <label>Title</label>
-                            <input type="text" id="title">
-                        </div>
-                        <div class="keywords_div">
-                            <label>Keywords</label>
-                            <input type="text" id="keywords" value="split by ';'">
-                        </div>
-                        <div class="abstract_div">
-                            <label>Abstract</label>
-                            <input type="text" id="abstract">
-                        </div>
-                        <div class="authors_div">
-                            <label>Authors</label>
-                            <input type="text" id="authors" value="split by ';'">
-                        </div>
-                        <div class="publish_div">
-                            <label>Publish</label>
-                            <input type="text" id="publish">
-                        </div>
-                        <div class="date_div">
-                            <label>Date</label>
-                            <input type="date" id="date">
-                        </div>
-                        <div class="link_div">
-                            <label>Link Address</label>
-                            <input type="text" id="link">
+                        <div class="upload-data">
+                            <table cellspacing="10">
+                                <tr>
+                                    <td class="item">Title: </td>
+                                    <td><input type="text" id="title" class="up-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="item">Keywords: </td>
+                                    <td><input type="text" id="Keywords" class="up-input" value="split by ';'"></td>
+                                </tr>
+                                <tr>
+                                    <td class="item">Abstract: </td>
+                                    <td><input type="text" id="abstract" class="up-input"></td>
+                                </tr>
+                                 <tr>
+                                    <td class="item">Authors: </td>
+                                    <td><input type="text" id="authors" class="up-input" value="split by ';'"></td>
+                                </tr>
+                                 <tr>
+                                    <td class="item">Publish: </td>
+                                    <td><input type="text" id="publish" class="up-input"></td>
+                                </tr>
+                                 <tr>
+                                    <td class="item">Date: </td>
+                                    <td><input type="date" id="date" class="up-input"></td>
+                                </tr>
+                                 <tr>
+                                    <td class="item">Link Address: </td>
+                                    <td><input type="text" id="link" class="up-input"></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -136,26 +100,26 @@
                         <div class="resultList">
                             <div class="resultItem">
                                 <div class="itemHead">
-                                    <a href="" target="_blank" id="title">dsfasdfase</a>
+                                    <a href="" target="_blank" id="title"><strong>dsfasdfase</strong></a>
                                     <span class="publish">-</span>
                                     <span class="publish" id="publish-value">000</span>
                                 </div>
                                 <div class="itemBody">
                                     <div class="keywords">
-                                        <label>Keywords: </label>
+                                        <label><strong>Keywords: </strong></label>
                                         <span id="keywords-value">555</span>
                                     </div>
                                     <div class="abstract">
-                                        <label>Abstract: </label>
+                                        <label><strong>Abstract: </strong></label>
                                         <span id="abstract-value">asdsadasdasd</span>
                                     </div>
                                 </div>
                                 <div class="itemFoot">
                                     <span class="info">
-                                <label class="authors">Authors: </label>
-                                <span class="authors" id="authors-value">111</span>
-                                    <label class="date">Date: </label>
-                                    <span class="date" id="date-value">222</span>
+                                        <label class="authors"><strong>Authors: </strong></label>
+                                        <span class="authors" id="authors-value">111</span>
+                                        <label class="date"><strong>Date: </strong></label>
+                                        <span class="date" id="date-value">222</span>
                                     </span>
                                 </div>
                             </div>
@@ -170,6 +134,11 @@
             <!-- /.modal -->
         </div>
     </div>
+
+     <footer class="footer text-center">
+        <p>Copyright &copy; 2018 Wendell</p>
+    </footer>
+
     <script src=lib/jquery-3.3.1.min.js></script>
     <script src=lib/nebPay.js></script>
     <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
