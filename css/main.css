@@ -202,6 +202,8 @@ footer p {
 
 .result-card-item {
     float: left;
+    width: 45%;
+    height: 30%;
     position: relative;
     border: 2px outset;
     padding: 10px;
