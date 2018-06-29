@@ -18,11 +18,15 @@
     .search {
         top: 0%;
         padding: 8px;
-        left: 47%;
+        left: 51%;
     }
 
     #search {
-        top: 8px;
+        top: 6px;
+    }
+
+    #search_text {
+        height: 45px;
     }
     </style>
 </head>
@@ -31,17 +35,13 @@
     <header>
         <div class="navbar navbar-dark box-shadow" style="background-color: black;">
             <div class="container d-flex justify-content-between">
-                <a href="#" class="navbar-brand d-flex align-items-center">
+                <a href="index.html" class="navbar-brand d-flex align-items-center">
                     <i class="fa fa-book"></i>
                     <strong>&nbsp; Nebulas Scholar</strong>
                 </a>
                 <div class="search bar">
                     <input type="text" id="search_text" autocomplete="off" placeholder="   Please input the title...">
                     <button type="submit" id="search" onclick="add_search()"></button>
-                </div>
-                <div class="navbar-brand d-flex align-items-center collapse">
-                    <button class="btn nav-button" type="button" id="library_bt" data-toggle="modal" data-target="#myLibModal"><strong>Library</strong></button>
-                    <button class="btn nav-button" type="button" id="upload_bt" data-toggle="modal" data-target="#myModal"><strong>Upload</strong></button>
                 </div>
             </div>
         </div>
@@ -114,7 +114,6 @@
     };
 
     var search_text = getParams("search_text");
-    console.log(search_text);
     $("#search_text").val(search_text);
 
     search_idx();
@@ -135,8 +134,9 @@
         var gas_limit = "2000000"
         var callFunction = "get";
         //var callArgs = "[\"" + $("#search_value").val() + "\"]"; //in the form of ["args"]
-        var arg = $("#search_text").val().split(/ +/);
-        var callArgs = JSON.stringify(arg);
+        var args = $("#search_text").val().split(/ +/);
+        var callArgs = JSON.stringify([args]);
+        console.log(callArgs)
         var contract = {
             "function": callFunction,
             "args": callArgs
@@ -166,7 +166,7 @@
 
         var data = [];
 
-        var callArgs = JSON.stringify(keys);
+        var callArgs = JSON.stringify([keys]);
         var contract = {
             "function": callFunction,
             "args": callArgs
@@ -183,7 +183,7 @@
 
     function cbSearchIdx(resp) {
         var result = resp.result ////resp is an object, resp.result is a JSON string
-        console.log("return of rpc call: " + JSON.stringify(result))
+        console.log("return of search index call: " + JSON.stringify(result))
 
         var resultString = JSON.stringify(result);
 
@@ -204,7 +204,7 @@
     //return of search,
     function cbSearch(resp) {
         var result = resp.result ////resp is an object, resp.result is a JSON string
-        console.log("return of rpc call: " + JSON.stringify(result))
+        console.log("return of search data call: " + JSON.stringify(result))
 
         var resultString = JSON.stringify(result);
         if (resultString.search("null") !== -1 || resultString.search("error") !== -1) {

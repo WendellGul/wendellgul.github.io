@@ -183,7 +183,6 @@
 
     $("#library_bt").click(function() {
         var from = Account.NewAccount().getAddressString();
-        var to = dappAddress;
         var value = "0";
         var nonce = "0";
         var gas_price = "1000000";
@@ -199,7 +198,7 @@
             "args": callArgs
         };
  
-        neb.api.call(from, to, value, nonce, gas_price, gas_limit, contract).then(function(resp) {
+        neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function(resp) {
             cbLibrary(resp);
         }).catch(function(err) {
             console.log("error:" + err.message);
