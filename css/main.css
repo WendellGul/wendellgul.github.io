@@ -6,7 +6,9 @@
     border: none;
 }
 
-
+input, button {
+    outline: none !important;
+}
 button:before {
     color: #337ab7;
     opacity:0;
