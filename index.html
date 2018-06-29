@@ -146,6 +146,7 @@
                 <span class="date">Date: </span>
                 <span class="date value">${date}</span>
             </div>
+            <div>===================================</div>
             
         </div>
     </script>
@@ -221,7 +222,9 @@
         }
         else {
             result = JSON.parse(result)
-            $("#template-results").tmpl(result).appendTo("#resultList")
+            console.log(result)
+            for (var r of result)
+                $("#template-results").tmpl(r).appendTo("#resultList")
         }
     }
 
