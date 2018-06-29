@@ -111,6 +111,8 @@
         </div>
     </div>
 
+
+
      <footer class="footer text-center">
         <p>Copyright &copy; 2018 Wendell</p>
     </footer>
@@ -124,30 +126,19 @@
     <script type="text/x-jquery-tmpl" id="template-results">
         <div class="card-item">
             <div class="item-title">
-                <a class="title" href="${link}">${title}</span>
+                <strong><a class="title" href="${link}">${title}</a></strong>
             </div>
-            <div class="item-authors">
-                <span class="authors">Authors: </span>
-                <span class="authors value">${authors}</span>
+            <div class="data-info">
+                <span class="info"><strong>Authors: </strong>${authors}</span>
+                <span class="info"><strong>Publish: </strong>${publish}</span>
+                <span class="info"><strong>Date: </strong>${date}</span>
             </div>
             <div class="item-keywords">
-                <span class="keywords">Keywords: </span>
-                <span class="keywords value">${keywords}</span>
+                <span class="keywords"><strong>Keywords: </strong>${keywords}</span>
             </div>
             <div class="item-abstract">
-                <span class="abstract">Abstract: </span>
-                <span class="abstract value">${abstract}</span>
+                <span class="abstract"><strong>Abstract: </strong>${abstract}</span>
             </div>
-            <div class="item-publish">
-                <span class="publish">Publish: </span>
-                <span class="publish value">${publish}</span>
-            </div>
-            <div class="item-date">
-                <span class="date">Date: </span>
-                <span class="date value">${date}</span>
-            </div>
-            <div>===================================</div>
-            
         </div>
     </script>
 

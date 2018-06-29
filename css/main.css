@@ -96,6 +96,7 @@ button:hover:after{
 
 #search_text {
     width: 600px;
+    padding: 0 10px;
 }
 
 footer {
@@ -144,3 +145,96 @@ footer p {
 .upload-data {
     margin: 5px 65px;
 }
+
+
+.card-item {
+    margin-bottom: 18px;
+    border: 2px outset;
+    padding: 5px;
+}
+
+.card-item .item-title {
+    margin-bottom: 3px;
+}
+
+.card-item .data-info {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.card-item .data-info .info {
+    padding-right: 8px;
+    margin-bottom: 2px;
+}
+
+.card-item .item-keywords {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.card-item .item-abstract {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.result-center {
+    position: absolute;
+    width: 60%;
+    height: 600px;
+    top: 10%;
+    left: 15%;
+    right: 0;
+    border: 0;
+    margin: 20px 80px;
+}
+
+
+.result-center: after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.result-center :nth-child(4n) .work-list-card {
+    margin-bottom: 30px;
+    font-size: 0;
+}
+
+.result-card-item {
+    float: left;
+    position: relative;
+    border: 2px outset;
+    padding: 10px;
+    margin: 10px 15px;
+}
+
+.result-card-item .item-title {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.result-card-item .data-info {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.result-card-item .data-info .info {
+    padding-right: 10px;
+    margin-bottom: 2px;
+}
+
+.result-card-item .item-keywords {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.result-card-item .item-abstract {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+
+
+
+
+
