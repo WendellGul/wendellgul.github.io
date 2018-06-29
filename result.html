@@ -51,8 +51,7 @@
             NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use Nebulas Scholar
         </div>
         <div class="center">
-            <div class="logo">
-                <div class="name">Nebulas Scholar</div>
+            <div id="result">
             </div>
         </div>
     </div>
@@ -63,11 +62,41 @@
     <script src=lib/nebPay.js></script>
     <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
     <script src=lib/nebulas.js></script>
+    <script type="text/javascript" src="lib/jquery.tmpl.js"></script>
+    <script type="text/x-jquery-tmpl" id="template-results">
+        <div class="card-item">
+            <div class="item-title">
+                <a class="title" href="${link}">${title}</span>
+            </div>
+            <div class="item-authors">
+                <span class="authors">Authors: </span>
+                <span class="authors value">${authors}</span>
+            </div>
+            <div class="item-keywords">
+                <span class="keywords">Keywords: </span>
+                <span class="keywords value">${keywords}</span>
+            </div>
+            <div class="item-abstract">
+                <span class="abstract">Abstract: </span>
+                <span class="abstract value">${abstract}</span>
+            </div>
+            <div class="item-publish">
+                <span class="publish">Publish: </span>
+                <span class="publish value">${publish}</span>
+            </div>
+            <div class="item-date">
+                <span class="date">Date: </span>
+                <span class="date value">${date}</span>
+            </div>
+            
+        </div>
+    </script>
+
     <script>
     "use strict";
 
-    var dappAddress = "n1vaRqCXyyouhMGcDYQQTSASgai17vKv9Mf";
-    var idxAddress = "n1f1TmJqpMSiVLGSz1zX88cbcZQSvE5Usce";
+    var dappAddress = "n1uypoJ8dt6k66PiLyV5353DWkudwiwsZ2K";
+    var idxAddress = "n1uGnX9sKhTQVfgrsJFy4GyBC5S6kt7iqHr";
 
     //here we use neb.js to call the "get" function to search from the Dictionary
     var nebulas = require("nebulas"),
@@ -86,13 +115,13 @@
 
     var search_text = getParams("search_text");
     console.log(search_text);
-    $(".searchInput").val(search_text);
+    $("#search_text").val(search_text);
 
-    search();
+    search_idx();
 
 
     function add_search() {
-        var url = "result.html?search_text=" + $(".searchInput").val();
+        var url = "result.html?search_text=" + $("#search_text").val();
         location.href = url;
     }
 
@@ -106,24 +135,24 @@
         var gas_limit = "2000000"
         var callFunction = "get";
         //var callArgs = "[\"" + $("#search_value").val() + "\"]"; //in the form of ["args"]
-        var arg = $(".searchInput").val()
-        var callArgs = JSON.stringify([arg]);
+        var arg = $("#search_text").val().split(/ +/);
+        var callArgs = JSON.stringify(arg);
         var contract = {
             "function": callFunction,
             "args": callArgs
         }
 
         neb.api.call(from, dappAddress, value, nonce, gas_price, gas_limit, contract).then(function(resp) {
-            cbSearch(resp)
+            cbSearchIdx(resp);
         }).catch(function(err) {
             //cbSearch(err)
             console.log("error:" + err.message)
-        })
+        });
 
     }
 
     // 搜索功能
-    function search() {
+    function search(keys) {
         // $("#search_value").val() 搜索框内的值
 
         var from = Account.NewAccount().getAddressString();
@@ -132,13 +161,12 @@
         var nonce = "0"
         var gas_price = "1000000"
         var gas_limit = "2000000"
-        var callFunction = "get";
+        var callFunction = "getMany";
         //var callArgs = "[\"" + $("#search_value").val() + "\"]"; //in the form of ["args"]
-        var arg = $(".searchInput").val()
 
         var data = [];
 
-        var callArgs = JSON.stringify([arg]);
+        var callArgs = JSON.stringify(keys);
         var contract = {
             "function": callFunction,
             "args": callArgs
@@ -149,7 +177,27 @@
         }).catch(function(err) {
             //cbSearch(err)
             console.log("error:" + err.message)
-        })
+        });
+
+    }
+
+    function cbSearchIdx(resp) {
+        var result = resp.result ////resp is an object, resp.result is a JSON string
+        console.log("return of rpc call: " + JSON.stringify(result))
+
+        var resultString = JSON.stringify(result);
+
+        if (resultString.search("null") !== -1 || resultString.search("error") !== -1) {
+            $(".totalResult").text("0");
+            $(".resultList").addClass("hide");
+        } else {
+            result = JSON.parse(result)
+            keys = []
+            for (var i = 0; i < result.length; i++) {
+                keys.push(result[i].value);
+            }
+            search(keys);
+        }
 
     }
 
@@ -159,38 +207,13 @@
         console.log("return of rpc call: " + JSON.stringify(result))
 
         var resultString = JSON.stringify(result);
-        if (resultString.search("title") !== -1) {
-            result = JSON.parse(result)
-            $(".resultList").removeClass("hide");
-            $("#title").text(result.title);
-            if (result.keywords.length !== 0 && result.keywords[0] !== "") {
-                $(".keywords").removeClass("hide");
-                $("#keywords-value").text(result.keywords);
-            }
-            if (result.abstract) {
-                $(".abstract").removeClass("hide");
-                $("#abstract-value").text(result.abstract);
-            }
-            if (result.authors.length !== 0 && result.authors[0] !== "") {
-                $(".authors").removeClass("hide");
-                $("#authors-value").text(result.authors);
-            }
-            if (result.publish) {
-                $(".publish").removeClass("hide");
-                $("#publish-value").text(result.publish);
-            }
-            if (result.date) {
-                $(".date").removeClass("hide");
-                $("#date-value").text(result.date);
-            }
-            if (result.link) {
-                $("#title").attr("href", result.link);
-            }
-
-        }
         if (resultString.search("null") !== -1 || resultString.search("error") !== -1) {
             $(".totalResult").text("0");
             $(".resultList").addClass("hide");
+        }
+        else {
+            result = JSON.parse(result)
+            $("#template-results").tmpl(result).appendTo("#result")
         }
     }
     </script>

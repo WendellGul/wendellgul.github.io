@@ -68,9 +68,20 @@ ScholarIdx.prototype = {
         var results = [];
         for(var i = 0; i < keys.length; i++) {
             var idx = this.indices.get(keys[i]);
-            results.push(...idx);
+            if(idx) {
+                for(var j = 0; j < idx.value.length; j++)
+                    results.push(idx.value[j]);
+            }
         }
-        return [...new Set(results)];
+        if(results.length > 0) {
+            var tmp = new Set(results);
+            results = [];
+            for(var x of tmp)
+                results.push(x);
+            return results;
+        }
+        else
+            return [];
     }
 };
 module.exports = ScholarIdx;

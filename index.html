@@ -56,7 +56,7 @@
                                 </tr>
                                 <tr>
                                     <td class="item">Keywords: </td>
-                                    <td><input type="text" id="Keywords" class="up-input" value="split by ';'"></td>
+                                    <td><input type="text" id="keywords" class="up-input" value="split by ';'"></td>
                                 </tr>
                                 <tr>
                                     <td class="item">Abstract: </td>
@@ -94,35 +94,11 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">My Library</h4>
+                        <h4 class="modal-title" id="myModalLabel">Library</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="resultList">
-                            <div class="resultItem">
-                                <div class="itemHead">
-                                    <a href="" target="_blank" id="title"><strong>dsfasdfase</strong></a>
-                                    <span class="publish">-</span>
-                                    <span class="publish" id="publish-value">000</span>
-                                </div>
-                                <div class="itemBody">
-                                    <div class="keywords">
-                                        <label><strong>Keywords: </strong></label>
-                                        <span id="keywords-value">555</span>
-                                    </div>
-                                    <div class="abstract">
-                                        <label><strong>Abstract: </strong></label>
-                                        <span id="abstract-value">asdsadasdasd</span>
-                                    </div>
-                                </div>
-                                <div class="itemFoot">
-                                    <span class="info">
-                                        <label class="authors"><strong>Authors: </strong></label>
-                                        <span class="authors" id="authors-value">111</span>
-                                        <label class="date"><strong>Date: </strong></label>
-                                        <span class="date" id="date-value">222</span>
-                                    </span>
-                                </div>
-                            </div>
+                        <div id="resultList">
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -144,6 +120,36 @@
     <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
     <script src=lib/nebulas.js></script>
     <script src="lib/md5.js"></script>
+    <script type="text/javascript" src="lib/jquery.tmpl.js"></script>
+    <script type="text/x-jquery-tmpl" id="template-results">
+        <div class="card-item">
+            <div class="item-title">
+                <a class="title" href="${link}">${title}</span>
+            </div>
+            <div class="item-authors">
+                <span class="authors">Authors: </span>
+                <span class="authors value">${authors}</span>
+            </div>
+            <div class="item-keywords">
+                <span class="keywords">Keywords: </span>
+                <span class="keywords value">${keywords}</span>
+            </div>
+            <div class="item-abstract">
+                <span class="abstract">Abstract: </span>
+                <span class="abstract value">${abstract}</span>
+            </div>
+            <div class="item-publish">
+                <span class="publish">Publish: </span>
+                <span class="publish value">${publish}</span>
+            </div>
+            <div class="item-date">
+                <span class="date">Date: </span>
+                <span class="date value">${date}</span>
+            </div>
+            
+        </div>
+    </script>
+
     <script>
     $("#search").click(function() {
         text = $("#search_text").val();
@@ -153,8 +159,8 @@
         location.href = url;
     });
 
-    var dappAddress = "n1vaRqCXyyouhMGcDYQQTSASgai17vKv9Mf",
-        dappIdxAddress = "n1e2fbwamubugLGL644qaz7bMo9eXDUC5qC";
+    var dappAddress = "n1uypoJ8dt6k66PiLyV5353DWkudwiwsZ2K",
+        dappIdxAddress = "n1uGnX9sKhTQVfgrsJFy4GyBC5S6kt7iqHr";
 
     var nebulas = require("nebulas"),
         Account = nebulas.Account,
@@ -167,14 +173,60 @@
     //var callbackUrl = NebPay.config.mainnetUrl;   //如果合约在主网,则使用这个
     var callbackUrl = NebPay.config.testnetUrl; //
 
+    var md5_value;
+
     $("#submit").click(function() {
         title = $("#title").val();
-        var md5_value = md5(title + Date.parse(new Date()));
-        submitIndex(md5_value);
-        submitData(md5_value);
+        md5_value = md5(title + Date.parse(new Date()));
+        submitIndex();
     });
 
-    function submitIndex(md5_value) {
+    $("#library_bt").click(function() {
+        var from = Account.NewAccount().getAddressString();
+        var to = dappAddress;
+        var value = "0";
+        var nonce = "0";
+        var gas_price = "1000000";
+        var gas_limit = "2000000";
+        var callFunction = "getAll";
+        //var callArgs = "[\"" + $("#search_value").val() + "\",\"" + $("#add_value").val() + "\"]"
+
+        var arg = Number.MAX_VALUE;
+        var callArgs = JSON.stringify([arg]);
+
+        var contract = {
+            "function": callFunction,
+            "args": callArgs
+        };
+ 
+        neb.api.call(from, to, value, nonce, gas_price, gas_limit, contract).then(function(resp) {
+            cbLibrary(resp);
+        }).catch(function(err) {
+            console.log("error:" + err.message);
+        });
+
+        intervalQuery = setInterval(function() {
+            funcIntervalQuery();
+        }, 10000);
+    });
+
+    function cbLibrary(resp) {
+        var result = resp.result ////resp is an object, resp.result is a JSON string
+        console.log("return of rpc call: " + JSON.stringify(result))
+
+        var resultString = JSON.stringify(result);
+        $("#resultList").empty();
+        if (resultString.search("null") !== -1 || resultString.search("error") !== -1) {
+            $(".totalResult").text("0");
+            $(".resultList").addClass("hide");
+        }
+        else {
+            result = JSON.parse(result)
+            $("#template-results").tmpl(result).appendTo("#resultList")
+        }
+    }
+
+    function submitIndex() {
         var to = dappIdxAddress;
         var value = "0";
         var callFunction = "put"
@@ -185,7 +237,7 @@
             [title.trim()], md5_value
         ]);
         serialNumber = nebPay.call(to, value, callFunction, callArgs, { //使用nebpay的call接口去调用合约,
-            listener: cbSubmit, //设置listener, 处理交易返回信息
+            listener: cbSubmitIdx, //设置listener, 处理交易返回信息
             callback: callbackUrl
         });
 
@@ -194,7 +246,8 @@
         }, 10000);
     }
 
-    function submitData(md5_value) {
+    function submitData() {
+        console.log(md5_value)
         var to = dappAddress;
         var value = "0";
         var callFunction = "upload"
@@ -230,12 +283,22 @@
                 var respObject = JSON.parse(resp)
                 if (respObject.code === 0) {
                     clearInterval(intervalQuery);
-                    alert(`upload ${$("#title").val()} succeed!`);
                 }
             })
             .catch(function(err) {
                 console.log(err);
             });
+    }
+
+    function cbSubmitIdx(resp) {
+        console.log("response of submit: " + JSON.stringify(resp))
+        var respString = JSON.stringify(resp);
+        if (respString.search("rejected by user") !== -1) {
+            clearInterval(intervalQuery)
+            alert(respString)
+        } else if (respString.search("txhash") !== -1) {
+            setTimeout("submitData()", 2000)
+        }
     }
 
 

@@ -39,11 +39,15 @@ var NebularsScholar = function () {
             return o.toString();
         }
     });
+
+    LocalContractStorage.defineMapProperty(this, "arrayMap");
+
+    LocalContractStorage.defineProperty(this, "count");
 };
 
 NebularsScholar.prototype = {
     init: function () {
-        // todo
+        this.count = 0;
     },
 
     upload: function (md5, title, keywords, abstract, authors, publish, date, link) {
@@ -72,14 +76,34 @@ NebularsScholar.prototype = {
         scholarItem.uploader = from;
 
         this.libs.put(md5, scholarItem);
+
+        var index = this.count;
+        this.arrayMap.put(index, md5);
+        this.count += 1;
     },
 
     get: function (md5) {
         return this.libs.get(md5);
-    }
+    },
 
-    getAll: function () {
+    getMany: function (keys) {
+        var result = [];
+        for(var i = 0; i < keys.length; i++) {
+            result.push(this.libs.get(keys[i]));
+        }
+        return result;
+    },
 
+    getAll: function (limit) {
+        var result = [];
+        if(limit > this.count)
+            limit = this.count;
+        for(var i = 0; i < limit; i++) {
+            var key = this.arrayMap.get(i);
+            var object = this.libs.get(key);
+            result.push(object);
+        }
+        return result;
     }
 };
 module.exports = NebularsScholar;
