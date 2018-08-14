@@ -9,7 +9,7 @@ tag:
 
 Cross-Modal Online Similarity function learning（CMOS）论文学习笔记。
 
-
+![1534225141256](/assets/images/Online asymmetric similarity learning for cross-modal retrieval/1534225141256.png)
 
 ## 模型
 
