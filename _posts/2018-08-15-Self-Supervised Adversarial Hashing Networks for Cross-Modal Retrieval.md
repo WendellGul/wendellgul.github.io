@@ -36,26 +36,32 @@ Self-Supervised Adversarial Hashing（SSAH）论文阅读笔记。
 * 两个实例之间语义相似度矩阵为$S$，当$o_i$和$o_j$至少有一个类别相同时，$S_{ij} = 1$
 
 跨模态哈希的目标是学习两个模态的数据共同Hamming空间的Hash表示：$B^{v,t} \in \{-1, 1\}^K$，其中$K$是哈希码的长度，两个哈希码相似度通过Hamming距离来度量，即
+
 $$
 dis_H(b_i, b_j) = \frac12(K - <b_i, b_j>)
 $$
+
 其中，$<b_i, b_j>$为内积运算。
 
 因此，我们可以通过内积来衡量两个二进制码的相似度。给定$S$，有
+
 $$
 p(S_{ij}|B) = \begin{cases}
 \delta(\Psi_{ij}), & S_{ij} = 1 \\
 1 - \delta(\Psi_{ij}), & S_{ij} = 0
 \end{cases}
 $$
+
 其中，$\delta(\Psi_{ij}) = \frac{1}{1+e^{-\Psi_{ij}}}$，$\Psi_{ij} = \frac12 <b_i, b_j>$ 。
 
 即两个实例的内积越大，他们相似的概率就应该越大。
 
 我们使用 *ImgNet* 和 *TxtNet* 来分别学习图片和文本的Hash函数，即$H^{v,t} = f^{v,t}(v,t;\theta^{v,t})$，同时，建立端到端的自监督语义网络 *LabNet* 将在相同语义空间的图片和文本的语义相关度建模，并且学习标签的表示$H^l = f^l(l;\theta^l)$ 。这里 $f^{v,t,l}$ 都是Hash函数，$\theta^{v,t,l}$ 是网络的参数，学到了 $H^{v,t,l}$ ，二进制码 $B^{v,t,l}$ 可以由符号函数生成，即
+
 $$
 B^{v,t,l} = sign(H^{v,t,l}) \in \{-1, 1\}^K
 $$
+
 为了更容易理解，使用$F^{v,t,l} \in \mathbb{R}^{s\times n}$ 来表示图片、文本和标签的语义表示，$s$ 是语义空间的维度。实际上，$F^{v,t,l}$ 分别对应于相应神经网络的输出。
 
 ### 自监督语义生成网络
@@ -63,6 +69,7 @@ $$
 由于一个三元组$(v_i, t_i, l_i)$ 描述的都是第 $i$ 个实例，我们将$l_i$ 作为$v_i$ 和 $t_i$ 的自监督信息。
 
 *LabNet* 最终的目标函数为
+
 $$
 \begin{align}
 \min_{B^l, \theta^l, \hat{L}^l} \mathcal{L}^l &= \alpha \mathcal{J}_1 + \gamma \mathcal{J}_2 + \eta \mathcal{J}_3 + \beta \mathcal{J}_4 \\
@@ -72,6 +79,7 @@ $$
 &\quad s.t. \quad B^l \in \{-1, 1\}^K
 \end{align}
 $$
+
 其中
 
 * $\Delta_{ij}^l = \frac 12(F_{*i}^l)^T(F_{*j}^l)$
@@ -84,6 +92,7 @@ $$
 ### 特征学习
 
 使用 *LabNet* 生成的语义信息作为监督信息，来学习 *ImgNet* 和 *TxtNet* 的特征表示。两个模型的目标函数如下
+
 $$
 \begin{align}
 \min_{B^{v,t}, \theta^{v,t}} \mathcal{L}^{v,t} &= \alpha \mathcal{J}_1 + \gamma \mathcal{J}_2 + \eta \mathcal{J}_3 + \beta \mathcal{J}_4 \\
@@ -93,6 +102,7 @@ $$
 &\quad s.t. \quad B^{v,t} \in \{-1, 1\}^K
 \end{align}
 $$
+
 其中
 
 * $\Delta_{ij}^{v,t} = \frac 12 (F_{*i}^l)^T(F_{*j}^{v,t})$
@@ -105,6 +115,7 @@ $F_{*i}^l$ 和 $H_{*l}^l$ 由语义网络学得，作为监督信息来引导 *I
 对图像和文本各设计一个判别器，对图像（文本）判别器，其输入是（图像）文本模态数据的特征向量和 *LabNet* 生成的语义特征向量，其输出是0或1。
 
 判别器的目标函数如下：
+
 $$
 \min_{\theta_{adv}\star,l} \mathcal{L}_{adv}^{\star,l} = \sum_{i=1}^{2\times n} \|D^{\star,l}(x_i^{\star l}) - y_i^{\star,l}\|_2^2, \ \star = v,t
 $$
@@ -120,17 +131,22 @@ $$
 ### 优化
 
 三种哈希码由下式生成
+
 $$
 B^{v,t,l} = sign(H^{v,t,l})
 $$
+
 我们令 $B = sign(H^v + H^t + H^l)$ 来训练模型为语义相似的实例生成二进制码。
 
 总体的目标函数为
+
 $$
 \mathcal{L}_{gen} = \mathcal{L}^v + \mathcal{L}^t + \mathcal{L}^l \\
 \mathcal{L}_{adv} = \mathcal{L}_{adv}^v + \mathcal{L}_{adv}^t
 $$
+
 将两者合起来，得到
+
 $$
 \begin{align}
 (B,\theta^{v,t,l}) &= \mathop{\arg \min}_{B, \theta^{v,t,l}} \mathcal{L}_{gen}(B, \theta^{v,t,l}) - \mathcal{L}_{adv}(\hat \theta_{adv}) \\
@@ -138,6 +154,7 @@ $$
 & s.t. \quad B \in\{-1, 1\}^K
 \end{align}
 $$
+
 学习算法如下
 
 ![1534318516551](/assets/images/Self-Supervised Adversarial Hashing Networks for Cross-Modal Retrieval/1534318516551.png)
