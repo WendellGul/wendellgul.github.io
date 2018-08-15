@@ -124,7 +124,7 @@ $$
 
 * $y_i^{v,t,l}$ 的定义暂未明确，*Oooooops...*
 
-  > To formulate this structure, let $Y = \{y_i\}^{3×n}_{i=1} , y_i \in \{0, 1\}$ denote the modality label assigned to the semantic feature in the shared common space. Let $Y^l = \{y^l_i\}^n_{i=1}, y^l_i = 1$ denote the modality labels for the label. Let $Y^{v,t} = \{y^{v,t}_i\}^n_{i=1}$ and $y^{v,t}_i = 0$ denote the modality labels for image and text, respectively.
+  ![1534322321106](/assets/images/Self-Supervised Adversarial Hashing Networks for Cross-Modal Retrieval/1534322321106.png)
 
 * 判别器其实起到分类的作用，将输入的语义特征分为“1”或“0”类
 
