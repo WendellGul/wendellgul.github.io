@@ -94,7 +94,7 @@ $$
 \gamma(\|\mathbf{B}^{(x)} - \mathbf{F}\|_F^2 + \|\mathbf{B}^{(y)} - \mathbf{G}\|_F^2)
 $$
 
-要使得该项最小，我们可以得到$\mathbf{B}^{(x)} = {\rm sign}(\mathbf{F})$，$\mathbf{B}^{(y)} = {\rm sign}(\mathbf{G})$。因为$\mathbf{F}$和$\mathbf{G}$都够保留$\mathbf{S}$中的相似性，所以$\mathbf{B}^{(x)}$和$\mathbf{B}^{(y)}$也能够达到相同的效果，而这正式跨模态哈希的目标。
+要使得该项最小，我们可以得到$\mathbf{B}^{(x)} = {\rm sign}(\mathbf{F})$，$\mathbf{B}^{(y)} = {\rm sign}(\mathbf{G})$。因为$\mathbf{F}$和$\mathbf{G}$都够保留$\mathbf{S}$中的相似性，所以$\mathbf{B}^{(x)}$和$\mathbf{B}^{(y)}$也能够达到相同的效果，而这正是跨模态哈希的目标。
 
 ### (1) 式中第三项
 
