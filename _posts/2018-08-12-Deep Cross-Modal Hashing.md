@@ -60,15 +60,12 @@ $$
 
 * $\mathbf{F} \in \mathbb{R}^{c\times n}$，$\mathbf{F}_{*i} = f(\mathbf{x}_i; \theta_x)$
 * $\mathbf{G} \in \mathbb{R}^{c\times n}$，$\mathbf{G}_{*j} = g(\mathbf{y}_j; \theta_y)$
-<<<<<<< HEAD
 * \$$\Theta_{ij}=\frac{1}{2}\mathbf{F}_{*i}^T \mathbf{G}_{*j}$$
 * $\mathbf{B}_{*i}^{(x)}$是图片$\mathbf{x}_i$的hash code
 * $\mathbf{B}_{*j}^{(y)}$是文本$\mathbf{y}_j$的hash code
-=======
 * $\Theta_{ij} = \frac{1}{2} \mathbf{F}_{*i}^T G_{*j}$
 * $\mathbf{B}_{*i}^{(x)}$是图片$\mathbf{x}_i$的hash code
 * $\mathbf{B}_{*j}^{(y)}​$是文本$\mathbf{y}_j​$的hash code
->>>>>>> 69085ff52d245a93e1d7627b3ce1be8618a160d2
 * $\gamma$和$\eta$是超参数
 * $\mathbf{1}$ 是值全为1的列向量
 
