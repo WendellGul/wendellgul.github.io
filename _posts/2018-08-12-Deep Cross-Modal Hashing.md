@@ -52,7 +52,7 @@ $$
 \begin{align}
 \min_{\mathbf{B}^{(x)}, \mathbf{B}^{(y)}, \theta_x, \theta_y} \mathcal{J} &= -\sum_{i,j=1}^n (S_{ij}\Theta_{ij} - \log(1+e^{\Theta_{ij}})) \\
 & + \gamma(\|\mathbf{B}^{(x)} - \mathbf{F}\|_F^2 + \|\mathbf{B}^{(y)} - \mathbf{G}\|_F^2) \\
-& + \eta(\|\mathbf{F1}\|_F^2 + \|\mathbf{G1}\|_f^2) \qquad \qquad \qquad \qquad  (1)\\
+& + \eta(\|\mathbf{F1}\|_F^2 + \|\mathbf{G1}\|_F^2) \qquad \qquad \qquad \qquad  (1)\\
 s.t. \quad & \mathbf{B}^{(x)} \in \{-1,+1\}^{c\times n}, \\
 & \mathbf{B}^{(y)} \in \{-1, +1\}^{c\times n}
 \end{align}
@@ -60,9 +60,15 @@ $$
 
 * $\mathbf{F} \in \mathbb{R}^{c\times n}$，$\mathbf{F}_{*i} = f(\mathbf{x}_i; \theta_x)$
 * $\mathbf{G} \in \mathbb{R}^{c\times n}$，$\mathbf{G}_{*j} = g(\mathbf{y}_j; \theta_y)$
+<<<<<<< HEAD
 * \$$\Theta_{ij}=\frac{1}{2}\mathbf{F}_{*i}^T \mathbf{G}_{*j}$$
 * $\mathbf{B}_{*i}^{(x)}$是图片$\mathbf{x}_i$的hash code
 * $\mathbf{B}_{*j}^{(y)}$是文本$\mathbf{y}_j$的hash code
+=======
+* $\Theta_{ij} = \frac{1}{2} \mathbf{F}_{*i}^T G_{*j}$
+* $\mathbf{B}_{*i}^{(x)}$是图片$\mathbf{x}_i$的hash code
+* $\mathbf{B}_{*j}^{(y)}​$是文本$\mathbf{y}_j​$的hash code
+>>>>>>> 69085ff52d245a93e1d7627b3ce1be8618a160d2
 * $\gamma$和$\eta$是超参数
 * $\mathbf{1}$ 是值全为1的列向量
 
@@ -96,15 +102,16 @@ $$
 \gamma(\|\mathbf{B}^{(x)} - \mathbf{F}\|_F^2 + \|\mathbf{B}^{(y)} - \mathbf{G}\|_F^2)
 $$
 
-要使得该项最小，我们可以得到$\mathbf{B}^{(x)} = {\rm sign}(\mathbf{F})$，$\mathbf{B}^{(y)} = {\rm sign}(\mathbf{G})$。因为$\mathbf{F}$和$\mathbf{G}$都够保留$\mathbf{S}$中的相似性，所以$\mathbf{B}^{(x)}$和$\mathbf{B}^{(y)}$也能够达到相同的效果，而这正式跨模态哈希的目标。
+要使得该项最小，我们可以得到$\mathbf{B}^{(x)} = {\rm sign}(\mathbf{F})$，$\mathbf{B}^{(y)} = {\rm sign}(\mathbf{G})$。因为$\mathbf{F}$和$\mathbf{G}$都够保留$\mathbf{S}$中的相似性，所以$\mathbf{B}^{(x)}$和$\mathbf{B}^{(y)}$也能够达到相同的效果，而这正是跨模态哈希的目标。
 
 ### (1) 式中第三项
 
 $$
-\eta(\|\mathbf{F1}\|_F^2 + \|\mathbf{G1}\|_f^2)
+\eta(\|\mathbf{F1}\|_F^2 + \|\mathbf{G1}\|_F^2)
 $$
 
-* 使得每个Hash code中$+1$和$-1$的个数尽可能相等
+* 使得所有Hash code同一位的$+1$和$-1$的个数尽可能相等
+  * 因为$\mathbf{F,G} \in \mathbb{R}^{c \times n}$，$\mathbf{1} \in \mathbb{R}^{n \times 1}$，$\mathbf{F1}$ 的结果即是所有数据的Hash code对应的的每一位相加，得到长度为$c$的向量（或$c\times 1$的矩阵），然后平方求和，使之最小。
 * 使得每一位bit提供的信息最大
 
 ### 改进
@@ -115,7 +122,7 @@ $$
 \begin{align}
 \min_{\mathbf{B}, \theta_x, \theta_y} \mathcal{J} &= -\sum_{i,j=1}^n (S_{ij}\Theta_{ij} - \log(1+e^{\Theta_{ij}})) \\
 & + \gamma(\|\mathbf{B} - \mathbf{F}\|_F^2 + \|\mathbf{B} - \mathbf{G}\|_F^2) \\
-& + \eta(\|\mathbf{F1}\|_F^2 + \|\mathbf{G1}\|_f^2) \qquad \qquad \qquad \qquad  (2)\\
+& + \eta(\|\mathbf{F1}\|_F^2 + \|\mathbf{G1}\|_F^2) \qquad \qquad \qquad \qquad  (2)\\
 s.t. \quad & \mathbf{B} \in \{-1,+1\}^{c\times n}
 \end{align}
 $$
@@ -174,7 +181,7 @@ $$
 
 ## 实验
 
-###数据集
+### 数据集
 
 * *MIRFLICKR-25K* dataset
   * 25,000图片，每张图片有1到多个文本标签
@@ -195,4 +202,8 @@ $$
 
 #### Hash Lookup Protocols
 
+<<<<<<< HEAD
 返回与查询在一定Hamming redius范围内的所有结果，使用PR curve评价
+=======
+返回与查询在一定Hamming redius范围内的所有结果，使用PR curve评价
+>>>>>>> 69085ff52d245a93e1d7627b3ce1be8618a160d2
