@@ -10,7 +10,6 @@ tag:
 Self-Supervised Adversarial Hashing（SSAH）论文阅读笔记。
 
 
-
 ![1534227945479](/assets/images/Self-Supervised Adversarial Hashing Networks for Cross-Modal Retrieval/1534227945479.png)
 
 > CPVR 2018

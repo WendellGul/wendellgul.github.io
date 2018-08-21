@@ -8,7 +8,7 @@ tag:
 
 Adversarial Cross-Modal Retrieval（ACMR）论文阅读笔记。
 
-![1534732156716](/assets/images/Adversarial-Cross-Modal-Retrieval/1534732156716.png)
+![1534732156716](/assets/images/Adversarial Cross-Modal Retrieval/1534732156716.png)
 
 > ACM MM 2017 Best Paper
 
@@ -25,7 +25,7 @@ Adversarial Cross-Modal Retrieval（ACMR）论文阅读笔记。
 
 ### 方法提出
 
-![1534747876684](/assets/images/Adversarial-Cross-Modal-Retrieval/1534747876684.png)
+![1534747876684](/assets/images/Adversarial Cross-Modal Retrieval/1534747876684.png)
 
 #### 模态分类器（Modality Classifier）
 
@@ -48,7 +48,7 @@ $$
 
 如下图所示，(a) 中每个圆表示一个图像，每个方形表示一个文本，相同的颜色表示具有相同的语义分类，(b) 表示上述的两个过程。
 
-![1534751574700](/assets/images/Adversarial-Cross-Modal-Retrieval/1534751574700.png)
+![1534751574700](/assets/images/Adversarial Cross-Modal Retrieval/1534751574700.png)
 
 ##### Label Prediction
 
@@ -116,5 +116,5 @@ $$
 
 具体算法如下
 
-![1534814244614](/assets/images/Adversarial-Cross-Modal-Retrieval/1534814244614.png)
+![1534814244614](/assets/images/Adversarial Cross-Modal Retrieval/1534814244614.png)
 
