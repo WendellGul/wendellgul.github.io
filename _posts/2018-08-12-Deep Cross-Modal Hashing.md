@@ -60,7 +60,7 @@ $$
 
 * $\mathbf{F} \in \mathbb{R}^{c\times n}$，$\mathbf{F}_{*i} = f(\mathbf{x}_i; \theta_x)$
 * $\mathbf{G} \in \mathbb{R}^{c\times n}$，$\mathbf{G}_{*j} = g(\mathbf{y}_j; \theta_y)$
-* \$$\Theta_{ij}=\frac{1}{2}\mathbf{F}_{*i}^T \mathbf{G}_{*j}$$
+* $\Theta_{ij}=\frac{1}{2}\mathbf{F}_{*i}^T \mathbf{G}_{*j}$
 * $\mathbf{B}_{*i}^{(x)}$是图片$\mathbf{x}_i$的hash code
 * $\mathbf{B}_{*j}^{(y)}$是文本$\mathbf{y}_j$的hash code
 * $\Theta_{ij} = \frac{1}{2} \mathbf{F}_{*i}^T G_{*j}$
@@ -199,8 +199,4 @@ $$
 
 #### Hash Lookup Protocols
 
-<<<<<<< HEAD
 返回与查询在一定Hamming redius范围内的所有结果，使用PR curve评价
-=======
-返回与查询在一定Hamming redius范围内的所有结果，使用PR curve评价
->>>>>>> 69085ff52d245a93e1d7627b3ce1be8618a160d2
