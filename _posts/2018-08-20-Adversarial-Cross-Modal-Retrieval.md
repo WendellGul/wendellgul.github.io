@@ -118,3 +118,7 @@ $$
 
 ![1534814244614](/assets/images/Adversarial Cross-Modal Retrieval/1534814244614.png)
 
+## 实验
+
+实现细节详见论文。
+
