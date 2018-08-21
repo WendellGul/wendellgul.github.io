@@ -42,7 +42,7 @@ $$
 * $D(.;\theta)$ 实例 $o_i$ 中每一项（图像或文本）的模态判别概率
 
 
-####特征映射器（Feature Projector）
+#### 特征映射器（Feature Projector）
 
 为了保证在共同子空间的图像和文本的*modality-invariant*，使用 **label prediction** 和 **structure preservation** 两个过程来对特征进行处理，Label prediction过程使得每个模态在共同子空间的映射特征通过语义标签区分开，即相当于模态内的分类；Structure preservation过程使得不同模态间有着同样的语义标签的特征保持不变。
 
