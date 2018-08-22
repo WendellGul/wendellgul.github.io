@@ -80,7 +80,7 @@ $$
 $$
 
 * $w_t$ 为真实描述中的词
-* $p_{\theta_t}(w_t|w_{0:t-1},v_l)$ 是在参数 $\theta_t$ 条件下，生成 $w_t$ 的概率
+* $p_{\theta_t}(w_t\|w_{0:t-1},v_l)$ 是在参数 $\theta_t$ 条件下，生成 $w_t$ 的概率
 
 然而，交叉熵损失是词级别的损失，由此训练的模型可能会有 *exposure bias problem* 和 *loss-evaluation mismatch problem*，因此将整个句子的损失也考虑进去，令负期望奖励最小化：
 
@@ -121,7 +121,7 @@ $$
 \min_{G_i} \max_{D_i} V(D_i, G_i) = \mathcal{L}_{D_i} + \mathcal{L}_{G_i}
 $$
 
-判别损失 $\mathcal{L}_{D_i}$ 和生成损失 $\mathcal{L}_{G_i}$ 定义如下：
+判别损失和生成损失定义如下：
 
 $$
 \begin{align}
@@ -139,7 +139,7 @@ $$
 
 然而，由于数据量的限制以及 $t_l$ 和 $z$ 之间的不平滑性，直接将 $t_l$ 和 $z$ 合并不能产生很好的结果。因此，引入一个新的变量 $t_c$，它由高斯分布 $\mathcal{N}(\mu(\varphi(t_l)), \sigma(\varphi(t_l)))$ 采样得到，$\varphi(t_l)$ 将 $t_l$ 压缩到一个更低的维度。
 
-由此，在 $z$ 和 $t_c$ 的作用下生成 $\hat i  =G_i(z,t_c)$，判别损失 $\mathcal{L}_{D_i}$ 和生成损失 $\mathcal{L}_{G_i}$ 修改如下：
+由此，在 $z$ 和 $t_c$ 的作用下生成 $\hat i  =G_i(z,t_c)$，判别损失和生成损失修改如下：
 
 $$
 \begin{align}
