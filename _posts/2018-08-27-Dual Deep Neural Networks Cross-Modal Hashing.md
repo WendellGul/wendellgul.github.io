@@ -37,6 +37,7 @@ DDCMH训练有三个阶段，第一个阶段，DDCMH利用**单模态**的Hash�
   * $b_x = f_x(x)$，$b_y = f_y(y)$，$b_x,b_y \in \{1,0\}^k$
 
   * 符号函数
+    
     $$
     sign(x) = \begin{cases}
     1 & x > 0 \\
@@ -51,6 +52,7 @@ DDCMH训练有三个阶段，第一个阶段，DDCMH利用**单模态**的Hash�
 #### 阶段一：文本模态初始Hash码的生成
 
 使用[COSDISH](https://www.aaai.org/ocs/index.php/AAAI/AAAI16/paper/view/12353)方法作为文本的单模态Hash方法，训练之后，得到文本的Hash码：
+
 $$
 B^{y1} = \{b_i^{y1}\}_{i=1}^n
 $$
@@ -62,6 +64,7 @@ $$
 使用经过 *ImageNet-1000* 数据集预训练的 **AlexNet** 进行学习，原始的AlexNet包含 *5* 个卷积层（*conv1-conv5*）和 *3* 个全连接层（*fc6-fc8*），为获取图像的Hash码，将AlexNet的 *fc8* 层用一个新的有 $k$ 个结点的Hash层 *fch*，每个结点对应Hash码的一位。
 
 令 $z_i^x = h_x(x_i;\theta_x)$ 为图像网络的输出，其中 $x_i$ 和 $\theta_x$ 分别是输入的图片和网络的参数。定义如下的似然函数：
+
 $$
 p(b_{ij}^{y1}|z_{ij}^x) = \begin{cases}
 \sigma(z_{ij}^x) & b_{ij}^{y1} = 1 \\
@@ -74,6 +77,7 @@ $$
 * $z_{ij}^x$ 第 $i$ 个数据在 *fch* 层第 $j$ 个结点的输出
 
 * $\sigma(\cdot)$ 是sigmoid函数
+  
   $$
   \sigma(z_{ij}^x) = \frac{1}{1+e^{-z_{ij}^x}}
   $$
@@ -81,6 +85,7 @@ $$
 
 
 所以图像网络的损失函数如下：
+
 $$
 \begin{align}
 L_x &= -\frac{1}{nk} \log p(B^{y1}|Z^x) \\
@@ -102,6 +107,7 @@ $$
 阶段三中，我们设计了一个有三层全连接层的感知机（MLP）作为文本网络。由于阶段二获得的图像的Hash码没有保留与文本显式的相关性，直接使用其对文本网络进行训练效果很差，但是因为提出的模型不使用基于数据对的信息，不能像其他深度Hash方法一样获取数据对之间的相关性。
 
 为解决上述的问题，我们提出了**Hash码重构**的方法，按照**语义标签**来优化图像Hash码：
+
 $$
 b_i^{xr} = \frac{1}{\|l_iL^T\|_1} l_iL^TB^x
 $$
@@ -116,6 +122,7 @@ $$
 一旦给定了 $B^{xr}$，阶段三与阶段二的步骤类似，用 $B^{xr}$ 作为监督信息，文本特征作为输入来训练文本网络，最终得到文本模态数据 $\mathcal{Y}$ 的Hash码 $B^y = \{b_i^y\}_{i=1}^n$ 。
 
 令 $z_i^y = h_y(y_i;\theta_y)$ 为文本网络的输出，$y_i$ 为输入，$\theta_y$ 为网络参数，网络的损失函数定义如下：
+
 $$
 \begin{align}
 L_x &= -\frac{1}{nk} \log p(B^{xr}|Z^y) \\
@@ -123,15 +130,19 @@ L_x &= -\frac{1}{nk} \log p(B^{xr}|Z^y) \\
 &= -\frac{1}{nk} \sum_{i=1}^n \sum_{j=1}^k[b_{ij}^{xr}\log p_{ij}^y + (1-b_{ij}^{xr}) \log(1-p_{ij}^y)]
 \end{align}
 $$
+
 同样的，使用BP算法优化参数 $\theta_y$ 。
 
 #### 样本外扩展
 
 对于不在训练集中的新的实例，给定图像查询 $x_q$，直接将其作为图像网络的输入，有
+
 $$
 b_q^x = sign(h_x(x_q;\theta_x))
 $$
+
 同样的，对于文本查询 $y_q$，使用文本网络，有
+
 $$
 b_q^y = sign(h_y(y_q;\theta_y))
 $$
