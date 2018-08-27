@@ -45,11 +45,12 @@ DDCMH训练有三个阶段，第一个阶段，DDCMH利用**单模态**的Hash�
     $$
 
 
+
 ### DDCMH
 
 #### 阶段一：文本模态初始Hash码的生成
 
-使用COSDISH方法作为文本的单模态Hash方法，训练之后，得到文本的Hash码：
+使用[COSDISH](https://www.aaai.org/ocs/index.php/AAAI/AAAI16/paper/view/12353)方法作为文本的单模态Hash方法，训练之后，得到文本的Hash码：
 $$
 B^{y1} = \{b_i^{y1}\}_{i=1}^n
 $$
@@ -76,6 +77,7 @@ $$
   $$
   \sigma(z_{ij}^x) = \frac{1}{1+e^{-z_{ij}^x}}
   $$
+
 
 
 所以图像网络的损失函数如下：
