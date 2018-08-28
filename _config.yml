@@ -5,7 +5,7 @@
 
 # Site
 title: BlooooooG
-subtitle: W.G's Blog
+subtitle: 
 description:
 author: Wendell Gu
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
@@ -213,8 +213,8 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-#social:
-  #LinkLabel: Link
+social:
+  GitHub: https://github.com/WendellGul
 
 
 # Social Links Icons
