@@ -13,7 +13,13 @@ Cross-Modal Online Similarity function learning（CMOS）论文学习笔记。
 
 > CVPR 2017
 
+本文提出了一个**跨模态在线相关学习**方法（CMOS），通过保留**异构数据**之间的语义相关性来学习他们的**非对称**的相关函数。数据间的语义相关性通过一系列在跨模态**三元组数据**上的**双向铰链损失（hinge loss）**约束来建模。
+
+这个在线相关学习问题通过**基于边距的在线PA（Passive-Aggressive）算法**来解决，并且对大规模数据集展现了很好的扩展性。文中接着在**再生核希尔伯特空间（reproducing kernel Hilbert space）**中线性组合多个**核函数**来学习相关函数。
+
 ## 模型
+
+![1535522774125](/assets/images/Online asymmetric similarity learning for cross-modal retrieval/1535522774125.png)
 
 ### 一些说明
 
