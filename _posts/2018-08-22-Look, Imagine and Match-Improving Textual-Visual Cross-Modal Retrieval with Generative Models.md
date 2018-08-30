@@ -12,6 +12,10 @@ Generative Cross-modal Learning Network（GXN）论文阅读笔记。
 
 > CVPR 2018
 
+文本提出将**生成模型**加入到文本-图像特征的提取中来进行跨模态检索，除了传统的在全局语义级别上进行的跨模态特征的提取之外，还引入了在局部级别上进行的跨模态特征的提取，这是基于两个生成模型：图像-文本和文本-图像生成模型来实现的。
+
+总的来看，模型包含三个步骤：**观察（look）**，**想象（imagine）**和**匹配（match）**。给定一个图片或者文本的查询，首先“观察”这个查询，提取一个**抽象（abstract）**的表示；然后，在另一个模态中“想象”查询目标（文本或图像）应该的“样子”，并且得到一个更加准确的 **grounded representation**，我们通过让一个模态的特征表示（待学习）来生成另一个模态的数据，然后将生成的数据与真实的数据进行比较；之后，使用相关度得分来匹配正确的图像-文本对，相关度得分是基于 **grounded** 和 **abstract** 表示的组合来计算的。
+
 ## 模型
 
 ![1534906127816](/assets/images/Look, Imagine and Match-Improving Textual-Visual Cross-Modal Retrieval with Generative Models/1534906127816.png)
@@ -57,7 +61,7 @@ $$
 $$
 
 * $\alpha$ 为 *margin*
-* $s(t,v) = -\|\max (0, v-t)\|^2$ 为 *order-violation panalty*，是相似度函数
+* $s(t,v) = -\|\max (0, v-t)\|^2$ 为 **order-violation penalty**，是相似度函数
 * $[x]_+$ 表示 $\max(x,0)$
 
 考虑到跨模态特征有两种不同的表示 $(t_h, v_h)$ 和 $(t_l, v_l)$，排序损失改为
@@ -109,7 +113,7 @@ $$
 \mathcal{L}_{xe+rl} = (1-\gamma)\mathcal{L}_{xe} + \gamma\mathcal{L}_{rl}
 $$
 
-为了退火和加速收敛，首先优化XE损失$\mathcal{L}_{xe}$ ，然后再转为优化上式的联合损失。
+为了**退火**和**加速收敛**，首先优化XE损失$\mathcal{L}_{xe}$ ，然后再转为优化上式的联合损失。
 
 ### 文本到图像生成对抗特征学习
 
@@ -158,4 +162,10 @@ $$
 
 ## 实验
 
-细节见论文。
+* 图像编码器：VGG19 和 ResNet152
+  * VGG19：倒数第二层全连接层作为提取的特征，维数4096
+  * ResNet152：在最后获得的图像特征之后加入一个**平均池化层**来提取全局图像特征，维数2048
+* 句子编码器：双向GRU来获取 **abstract** 特征表示 $t_h$，GRU来获取 **grounded** 特征表示 $t_l$，维数都是1024
+* 句子解码器：一层的GRU，维数1024
+
+其他细节见论文。
