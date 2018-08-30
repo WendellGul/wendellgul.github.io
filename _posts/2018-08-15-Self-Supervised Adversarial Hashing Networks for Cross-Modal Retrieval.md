@@ -14,6 +14,8 @@ Self-Supervised Adversarial Hashing（SSAH）论文阅读笔记。
 
 > CPVR 2018
 
+本文提出了一个**自监督对抗哈希方法（SSAH）**来进行跨模态检索，使用了两个**对抗网络**联合学习不同模态数据的高维特征和对应的Hash码，同时，整合一个**自监督的语义网络**通过多标签标注的形式发现语义信息，这些**语义信息再被用作对抗网络的监督信息**，来最大化两个模态间的语义相关度以及特征分布的一致性。
+
 ## SSAH
 
 ![1534230312708](/assets/images/Self-Supervised Adversarial Hashing Networks for Cross-Modal Retrieval/1534230312708.png)
