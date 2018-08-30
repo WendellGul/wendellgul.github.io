@@ -26,7 +26,7 @@ Self-Supervised Adversarial Hashing（SSAH）论文阅读笔记。
 * 图片相关的对抗网络 *ImgNet*
 * 文本相关的对抗网络 TexNet
 
-*LabNet* 就是从多标签标注中学习到语义特征，然后它可以被视为用于监督两个阶段的模态特征学习的公共语义空间。第一个阶段，在公共的语义空间中将来自不同生成网络的模态特定的特征联系起来。考虑到深度神经网路的每个输出层都包含了语义信息，在公共的语义空间中将模态特定的特征联系起来，可以帮助提高模态之间的语义相关性。第二个阶段，把语义特征和模态特定的特征同时馈送进两个判别网络。因此，在相同语义特征的监督下，两个模态的特征分布最终会趋于一致。
+*LabNet* 就是从多标签标注中学习到语义特征，然后它可以被视为用于监督其他两个阶段的特征学习的公共语义空间。第一个阶段，在公共的语义空间中将不同网络生成的模态特征联系起来。考虑到深度神经网路的每个输出层都包含了语义信息，在公共的语义空间中将模态的特征联系起来，可以帮助提高模态之间的语义相关度。第二个阶段，把语义特征和模态特征同时送进两个判别网络。因此，在相同语义特征的监督下，两个模态的特征分布最终会趋于一致。
 
 ### 问题定义
 
@@ -39,12 +39,12 @@ Self-Supervised Adversarial Hashing（SSAH）论文阅读笔记。
 跨模态哈希的目标是学习两个模态的数据共同Hamming空间的Hash表示：$B^{v,t} \in \{-1, 1\}^K$，其中$K$是哈希码的长度，两个哈希码相似度通过Hamming距离来度量，即
 
 $$
-dis_H(b_i, b_j) = \frac12(K - <b_i, b_j>)
+dis_H(b_i, b_j) = \frac12(K - \langle b_i, b_j \rangle)
 $$
 
-其中，$<b_i, b_j>$为内积运算。
+其中，$\langle b_i, b_j \rangle$ 为内积运算。
 
-因此，我们可以通过内积来衡量两个二进制码的相似度。给定$S$，有
+因此，我们可以通过内积来衡量两个二进制码的相似度。给定相似矩阵$S$，有
 
 $$
 p(S_{ij}|B) = \begin{cases}
@@ -53,7 +53,7 @@ p(S_{ij}|B) = \begin{cases}
 \end{cases}
 $$
 
-其中，$\delta(\Psi_{ij}) = \frac{1}{1+e^{-\Psi_{ij}}}$，$\Psi_{ij} = \frac12 <b_i, b_j>$ 。
+其中，$\delta(\Psi_{ij}) = \frac{1}{1+e^{-\Psi_{ij}}}$，$\Psi_{ij} = \frac12 \langle b_i, b_j \rangle$ 。
 
 即两个实例的内积越大，他们相似的概率就应该越大。
 
@@ -76,7 +76,7 @@ $$
 \min_{B^l, \theta^l, \hat{L}^l} \mathcal{L}^l &= \alpha \mathcal{J}_1 + \gamma \mathcal{J}_2 + \eta \mathcal{J}_3 + \beta \mathcal{J}_4 \\
 &= -\alpha \sum_{i,j=1}^n \Big(S_{ij} \Delta_{ij}^l - \log(1+e^{\Delta_{ij}^l}) \Big) \\
 &\quad -\gamma\sum_{i,j=1}^n\Big(S_{ij}\Gamma_{ij}^l - \log(1 + e^{\Gamma_{ij}^l})\Big) \\
-&\quad - \eta\|H^l - B^l\|_F^2 + \beta \|\hat L^l - L\|_F^2 \\
+&\quad + \eta\|H^l - B^l\|_F^2 + \beta \|\hat L^l - L\|_F^2 \\
 &\quad s.t. \quad B^l \in \{-1, 1\}^K
 \end{align}
 $$
@@ -137,7 +137,7 @@ $$
 B^{v,t,l} = sign(H^{v,t,l})
 $$
 
-我们令 $B = sign(H^v + H^t + H^l)$ 来训练模型为语义相似的实例生成二进制码。
+我们令 $B = sign(H^v + H^t + H^l)$ 来训练模型，为语义相似的实例生成二进制码。
 
 总体的目标函数为
 
