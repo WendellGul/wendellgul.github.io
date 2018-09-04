@@ -146,10 +146,11 @@ $$
 \mathbf{V}^\Omega = [\mathbf{v}_{i_1},\mathbf{v}_{i_2},...,\mathbf{v}_{i_m}]
 $$
 
-定义 $\bar{\mathbf{U}} = \{\bar{\mathbf{u}}_j\}_{j=1}^n$，其中
+定义:
 
 $$
-\bar{\mathbf{u}}_j = \begin{cases}
+\bar{\mathbf{U}} = \{\bar{\mathbf{u}}_j\}_{j=1}^n, \\
+其中，\bar{\mathbf{u}}_j = \begin{cases}
 \tilde{\mathbf{u}}_j & {\rm if} \ j\in\Omega \\
 \mathbf{0} & {\rm otherwise}
 \end{cases}
@@ -171,8 +172,12 @@ $$
 \mathbf{Q} = -2c\mathbf{S}^T\tilde{\mathbf{U}} -2 \gamma\bar{\mathbf{U}}
 $$
 
-然后，按**位（bit）**更新 $\mathbf{V}$，就是说，每次只更新 $\mathbf{V}$ 的某一列，其他的列固定，令 $\mathbf{V}_{*k}$ 表示 $\mathbf{V}$ 的第 $k$ 列，$\hat{\mathbf{V}}_k$ 表示除去 $\mathbf{V}_{*k}$ 的矩阵 $\mathbf{V}$，其他的符号含义类似，则我们需要解决的问题是：
+然后，按**位（bit）**更新 $\mathbf{V}$，就是说，每次只更新 $\mathbf{V}$ 的某一列，其他的列固定。令：
 
+* $\mathbf{V}_{*k}$ 表示 $\mathbf{V}$ 的第 $k$ 列
+* $\hat{\mathbf{V}}_k$ 表示除去第 $k$ 列的矩阵 $\mathbf{V}$，其他的符号含义类似
+
+则我们需要解决的问题是：
 $$
 \begin{align}
 \min_{\mathbf{V}_{*k}} J(\mathbf{V}_{*k}) &=\|\mathbf{V}\tilde{\mathbf{U}}^T\|_F^2 + {\rm tr}(\mathbf{V}\mathbf{Q}^T) + {\rm const} \\
