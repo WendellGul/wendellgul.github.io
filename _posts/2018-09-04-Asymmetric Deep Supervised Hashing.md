@@ -48,7 +48,7 @@ ADSH将查询点和数据库点做非对称地处理，只为查询点学习一�
 
 使用经过ImageNet预训练的CNN-F模型作为特征提取器，将CNN-F的最后一层替换成一个将输出映射成 $\mathbb{R}^c$ 的全连接层。
 
-当然，ASDH也可以使用其他的网络用来特征提取。
+当然，ADSH也可以使用其他的网络用来特征提取。
 
 ### 损失函数部分
 
@@ -116,7 +116,7 @@ $$
 使用BP算法学习 $\Theta$。
 
 $$
-\frac{\part J}{\part \mathbf{z}_i} = \Big\{2\sum_{j\in\Gamma}\big[(\tilde{\mathbf{u}}_i^T \mathbf{v}_j - cS_{ij})\mathbf{v}_j\big] + 2\gamma(\tilde{\mathbf{u}}_i - \mathbf{v}_i)\Big\} \odot (1-\tilde{\mathbf{u}}_i^2) \qquad (6)
+\frac{\partial J}{\partial \mathbf{z}_i} = \Big\{2\sum_{j\in\Gamma}\big[(\tilde{\mathbf{u}}_i^T \mathbf{v}_j - cS_{ij})\mathbf{v}_j\big] + 2\gamma(\tilde{\mathbf{u}}_i - \mathbf{v}_i)\Big\} \odot (1-\tilde{\mathbf{u}}_i^2) \qquad (6)
 $$
 
 其中：
@@ -124,7 +124,7 @@ $$
 * $\mathbf{z}_i = F(\mathbf{y}_i;\Theta)$
 * $\tilde{\mathbf{u}}_i = \tanh(\mathbf{z_i})$
 
-然后就可以通过链式法则来计算 $\frac{\part J}{\part \Theta}$，然后更新 $\Theta$。
+然后就可以通过链式法则来计算 $\frac{\partial J}{\partial \Theta}$，然后更新 $\Theta$。
 
 #### 固定 $\Theta$ 学习 $\mathbf{V}$
 
