@@ -146,7 +146,7 @@ $$
 \mathbf{V}^\Omega = [\mathbf{v}_{i_1},\mathbf{v}_{i_2},...,\mathbf{v}_{i_m}]
 $$
 
-定义:
+定义：
 
 $$
 \bar{\mathbf{U}} = \{\bar{\mathbf{u}}_j\}_{j=1}^n, \\
@@ -178,6 +178,7 @@ $$
 * $\hat{\mathbf{V}}_k$ 表示除去第 $k$ 列的矩阵 $\mathbf{V}$，其他的符号含义类似
 
 则我们需要解决的问题是：
+
 $$
 \begin{align}
 \min_{\mathbf{V}_{*k}} J(\mathbf{V}_{*k}) &=\|\mathbf{V}\tilde{\mathbf{U}}^T\|_F^2 + {\rm tr}(\mathbf{V}\mathbf{Q}^T) + {\rm const} \\
