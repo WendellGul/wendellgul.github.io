@@ -67,7 +67,7 @@ $$
 
 #### 基于位的最大间距损失（Bitwise Max-Margin Loss）
 
-对于每一个图像-文本对 $$\mathbf{o}_i = (\mathbf{x}_i, \mathbf{y}_i)$$ ，为了减小联合语义特征 $$\mathbf{h}_i$$ 和他们的模态相关的哈希码 $$\mathbf{u}_i, \mathbf{v}_i$$ 的差距，要求 $$\mathbf{h}_i$$ 与 $${\rm sgn}(\mathbf{h})\in \{-1,1\}^K$$ 尽可能接近，即使得 $$\|\|\mathbf{h}_i\| - \mathbf{1}\|^2$$ 最小化。
+对于每一个图像-文本对 $$\mathbf{o}_i = (\mathbf{x}_i, \mathbf{y}_i)$$ ，为了减小联合语义特征 $$\mathbf{h}_i$$ 和他们的模态相关的哈希码 $$\mathbf{u}_i, \mathbf{v}_i$$ 的差距，要求 $$\mathbf{h}_i$$ 与 $${\rm sgn}(\mathbf{h})\in \{-1,1\}^K$$ 尽可能接近，即使得 $$\parallel \mid\mathbf{h}_i\mid - \mathbf{1}\parallel^2$$ 最小化。
 
 由于平方损失容易受离群点影响，因此提出了**基于位的最大间距损失**：
 
