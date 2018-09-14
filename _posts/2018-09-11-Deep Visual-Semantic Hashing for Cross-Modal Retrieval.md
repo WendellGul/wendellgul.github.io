@@ -33,7 +33,7 @@ Deep Visual-Semantic Hashing for Cross-Modal Retrieval（DVSH）论文阅读笔�
 
 将一张图片 $$\mathbf{x}_i$$ 作为输入传入 CNN 网络中，生成一个**固定长度的表示向量** $$\mathbf{h}_i^x$$ 。将AlexNet的 *fc8* 的分类层替换成一个特征映射层，将 *fc7* 特征映射成一个新的 $$K$$ 维特征。
 
-LSTM 将在时间 $$t$$ 的输入 $$\mathbf{y}_{it}$$ 和前一个时间 $$t$$ 的隐含状态 $$\mathbf{h}_{i(t-1)}^y$$ 映射成一个输出 $$\mathbf{z}_{it}^y$$ 和新的隐含状态 $$\mathbf{h}_{it}^y$$ 。
+LSTM 将在时间 $$t$$ 的输入 $$\mathbf{y}_{it}$$ 和前一个时间 $$t$$ 的隐含状态 $$\mathbf{h}_{i(t-1)}^y$$ 映射成一个输出 $$\mathbf{z}_{it}^y$$ 和新的隐含状态 $$\mathbf{h}_{it}^y$$。
 
 为了将CNN和LSTM整合到起来，这里引入了第二层LSTM，即将 $$\mathbf{x}_i$$ 的表示 $$\mathbf{h}_i^x$$ **融合到LSTM每个状态的第二层**，融合层（绿色的LSTM）在状态 $$t$$ 的激活函数为：
 

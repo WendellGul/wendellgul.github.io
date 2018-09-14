@@ -30,7 +30,7 @@ Deep Cross-media Knowledge Transfer（DCKT）论文阅读笔记
 DKCT端到端的结构可以看成两个阶段：media-level迁移和correlation-level迁移。
 
 * 源域：$Src = \{(i_s^p, t_s^p),y_s^p\}_{p=1}^P$，其中 $(i_s^p,t_s^p)$ 为标签为$y_s^p$的第$p$个图像-文本对。
-* 目标域：$Tar_{tr} = \{(i_t^q,t_t^q),y_t^q\}_{q=1}^Q$ 为训练集，$Tar_{te} = \{(i_t^m, t_t^m)\}_{m=1}^M$ 为测试集
+* 目标域：$$Tar_{tr} = \{(i_t^q,t_t^q),y_t^q\}_{q=1}^Q$$ 为训练集，$$Tar_{te} = \{(i_t^m, t_t^m)\}_{m=1}^M$$ 为测试集
 
 DCKT的目标就是同时利用 $Src$ 和 $Tar_{tr}$ 来训练模型，为 $Tar_{te}$ 的图像和文本生成共同的表示 $c_t(I)^m$ 和 $c_t(T)^m$，之后，跨媒体检索的距离计算就可以直接在共同的表示空间进行了。
 
@@ -49,7 +49,7 @@ DCKT的目标就是同时利用 $Src$ 和 $Tar_{tr}$ 来训练模型，为 $Tar_
 
 通过**最小化最大平均差异（minimize the maximum mean discrepancy，MMD）**来实现两个域之间相同模态数据的 *feature adaptation*。
 
-就图像来说，$I_s = \{i_s\}$ 和 $I_t = \{i_t\}$ 分别表示 $Src$ 和 $Tar_{tr}$ 的分布，$\mu_k(a)$ 表示在 *reproducing kernel Hibert space*（RKHS）$\mathcal{H}_k$ 空间中 $a$ 的均值，$\mathbf{E}_{x\sim a} f(x) = \langle f(x), \mu_k(a)\rangle$，所以平方MMD $m_k^2(I_s,I_t)$ 计算如下：
+就图像来说，$I_s = \{i_s\}$ 和 $I_t = \{i_t\}$ 分别表示 $Src$ 和 $Tar_{tr}$ 的分布，$\mu_k(a)$ 表示在 *reproducing kernel Hibert space*（RKHS）$\mathcal{H}_k$ 空间中 $a$ 的均值，$$\mathbf{E}_{x\sim a} f(x) = \langle f(x), \mu_k(a)\rangle$$，所以平方MMD $$m_k^2(I_s,I_t)$$ 计算如下：
 
 $$
 m_k^2(I_s,I_t) \triangleq \|\mathbf{E}_{I_s}[\phi(i_s, \theta_{I_s})] - \mathbf{E}_{I_t}[\phi(i_t, \theta_{I_t})]\|_{\mathcal{H}_k}^2

@@ -79,7 +79,7 @@ $$
 l_2(v,t) = \|f_{\mathcal{V}}(v;\theta_{\mathcal{V}}) - f_{\mathcal{T}}(t;\theta_{\mathcal{T}})\|_2
 $$
 
-对每个语义标签$l_i$，采样三元组$\{(v_i,t_i^+, t_j^-)\}$ 和 $\{(t_i, v_i^+, v_j^-)\}$，$t_i^+$ 为与$v_i$的语义标签一致，而$t_j^-$ 的语义标签与$v_i$ 不同。
+对每个语义标签$l_i$，采样三元组$$\{(v_i,t_j^+, t_k^-)\}_i$$ 和 $$\{(t_i, v_j^+, v_k^-)\}_i$$，$t_j^+$ 为与$v_i$的语义标签一致，而$t_k^-$ 的语义标签与$v_i$ 不同。
 
 最后，计算模态间的不变性损失（inter-modal invariance loss）：
 

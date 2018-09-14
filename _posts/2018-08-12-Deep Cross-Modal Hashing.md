@@ -60,7 +60,7 @@ $$
 
 * $\mathbf{F} \in \mathbb{R}^{c\times n}$，$\mathbf{F}_{*i} = f(\mathbf{x}_i; \theta_x)$
 * $\mathbf{G} \in \mathbb{R}^{c\times n}$，$\mathbf{G}_{*j} = g(\mathbf{y}_j; \theta_y)$
-* $\Theta_{ij}=\frac{1}{2}\mathbf{F}_{*i}^T \mathbf{G}_{*j}$
+* $$\Theta_{ij}=\frac{1}{2}\mathbf{F}_{*i}^T \mathbf{G}_{*j}$$
 * $\mathbf{B}_{*i}^{(x)}$是图片$\mathbf{x}_i$的hash code
 * $\mathbf{B}_{*j}^{(y)}$是文本$\mathbf{y}_j$的hash code
 * $\gamma$和$\eta$是超参数
@@ -87,7 +87,7 @@ $$
 p(S_{ij}|\mathbf{F}_{*i},\mathbf{G}_{*j}) = \frac{e^{(S_{ij}-1) \Theta_{ij}}}{1+e^{-\Theta_{ij}}}
 $$
 
-* 最大化似然估计或者最小化负对数似然都可以达到目标，即当$S_{ij} = 1​$时，$\mathbf{F}_{*i}​$ 和 $\mathbf{G}_{*j}​$的相似度（内积）越大，否则，他们的相似度越小
+* 最大化似然估计或者最小化负对数似然都可以达到目标，即当$S_{ij} = 1$时，$$\mathbf{F}_{*i}$$ 和 $$\mathbf{G}_{*j}$$ 的相似度（内积）越大，否则，他们的相似度越小
 * 最终图片特征表示$\mathbf{F}$和文本特征表示$\mathbf{G}$可以保留相似性矩阵$\mathbf{S}$的内容
 
 ### (1) 式中第二项
@@ -124,7 +124,7 @@ $$
 此为最终的目标函数。
 
 * $\theta_x,\theta_y$和$\mathbf{B}$从同一个目标函数中学得
-* 仅在训练阶段令$\mathbf{B^{(x)}} = \mathbf{B}_{(y)]}$
+* 仅在训练阶段令$\mathbf{B}^{(x)} = \mathbf{B}^{(y)}$
 
 ## 学习策略
 

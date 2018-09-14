@@ -83,8 +83,8 @@ $$
 
 其中
 
-* $\Delta_{ij}^l = \frac 12(F_{*i}^l)^T(F_{*j}^l)$
-* $\Gamma_{ij}^l = \frac12(H_{*i}^l)^T(H_{*j}^l)$
+* $$\Delta_{ij}^l = \frac 12(F_{*i}^l)^T(F_{*j}^l)$$
+* $$\Gamma_{ij}^l = \frac12(H_{*i}^l)^T(H_{*j}^l)$$
 * $H^l$ 是预测的哈希码，$\hat L^l$ 是预测的标签
 * $\alpha, \gamma, \eta$ 和 $\beta$ 都是超参
 
@@ -106,8 +106,8 @@ $$
 
 其中
 
-* $\Delta_{ij}^{v,t} = \frac 12 (F_{*i}^l)^T(F_{*j}^{v,t})$
-* $\Gamma_{ij}^{v,t} = \frac 12 (H_{*i}^l)^T(H_{*j}^{v,t})$
+* $$\Delta_{ij}^{v,t} = \frac 12 (F_{*i}^l)^T(F_{*j}^{v,t})$$
+* $$\Gamma_{ij}^{v,t} = \frac 12 (H_{*i}^l)^T(H_{*j}^{v,t})$$
 
 $F_{*i}^l$ 和 $H_{*l}^l$ 由语义网络学得，作为监督信息来引导 *ImgNet* 和 *TxtNet* 的学习，其他定义和之前的定义一致。
 

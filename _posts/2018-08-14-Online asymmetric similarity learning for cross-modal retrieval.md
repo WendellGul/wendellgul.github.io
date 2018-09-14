@@ -23,9 +23,9 @@ Cross-Modal Online Similarity function learning（CMOS）论文学习笔记。
 
 ### 一些说明
 
-- $\mathcal{V} = \{v_i\}_{i=1}^{N_v}$ 表示图片的集合
-- $\mathcal{T} = \{t_i\}_{i=1}^{N_t}$ 表示文本的集合
-- $v_i \in \mathbb{R}^{d_v}$，$t_i \in \mathbb{R}^{d_t}$ 都是列向量
+- $$\mathcal{V} = \{v_i\}_{i=1}^{N_v}$$ 表示图片的集合
+- $$\mathcal{T} = \{t_i\}_{i=1}^{N_t}$$ 表示文本的集合
+- $v_i \in \mathbb{R}^{d_v}$，$t_i \in \mathbb{R}^{d_t}$ 都是列向量，这里的 $$v_i, t_i$$ 表示图像和文本的特征向量
 - $r(v_i,t_j)$ 表示真实的语义相关对
 - $(v_i, t_i^+, t_i^-) \in \prod^v$ 和 $(t_i, v_i^+, v_i^-) \in \prod^t$ 是表示相对相似关系的三元组
 - $(v_i, t_i^+, t_i^-)$ 表示 $r(v_i, t_i^+) > r(v_i, t_i^-)$，称 $t_i^+$ 为正例，$t_i^-$ 为负例
@@ -49,7 +49,7 @@ $$
 其中，$s(v_i, t_j)$ 是一个非对称双线性函数，即
 
 $$
-s(v_i, t_j) = v_i^T\mathbf{W}_{t_j}
+s(v_i, t_j) = v_i^T\mathbf{W}t_j
 $$
 
 其中$\mathbf{W} \in \mathbb{R}^{d_v \times d_t}$ 不是方阵。
