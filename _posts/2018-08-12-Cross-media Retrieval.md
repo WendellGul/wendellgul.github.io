@@ -25,7 +25,7 @@ tag:
 
 ## 定义
 
-设 $X,Y$ 为两个模态类型，训练数据\$$\mathcal{D}_{tr} = \{X_{tr}, Y_{tr}\}$$其中 \$$X_{tr} = \{\mathbf{x}_p\}_{p=1}^{n_{tr}}$$ ， \$$n_{tr}$$ 是训练样本的数目， \$$\mathbf{x}_p$$ 是第 $p$ 个训练数据， \$$Y_{tr}$$ 也是类似的定义。 $\mathbf{x}_p$ 和 \$$\mathbf{y}_p$$ 有着相似的语义信息， \$$\{c_p^X\}_{p=1}^{n_{tr}}$$ 和 \$$\{c_p^Y\}_{p=1}^{n_{tr}}$$ 表示数据的语义分类。测试数据 \$$\mathcal{D}_{te} = \{X_{te}, Y_{te}\}$$ ，其中 \$$X_{te} = \{\mathbf{x}_q\}_{q=1}^{n_{te}}$$ ， \$$Y_{te} = \{\mathbf{y}_q\}_{q=1}^{n_{te}}$$ ，跨模态信息检索的目标是计算两个不同模态数据的相似度，然后检索测试数据中对于任意模态的查询，与之相关的其他模态的数据。
+设 $X,Y$ 为两个模态类型，训练数据$$\mathcal{D}_{tr} = \{X_{tr}, Y_{tr}\}$$其中 $$X_{tr} = \{\mathbf{x}_p\}_{p=1}^{n_{tr}}$$ ，$$n_{tr}$$ 是训练样本的数目，$$\mathbf{x}_p$$ 是第 $$p$$ 个训练数据， $$Y_{tr}$$ 也是类似的定义。 $$\mathbf{x}_p$$ 和 $$\mathbf{y}_p$$ 有着相似的语义信息，$$\{c_p^X\}_{p=1}^{n_{tr}}$$ 和 $$\{c_p^Y\}_{p=1}^{n_{tr}}$$ 表示数据的语义分类。测试数据 $$\mathcal{D}_{te} = \{X_{te}, Y_{te}\}$$ ，其中 $$X_{te} = \{\mathbf{x}_q\}_{q=1}^{n_{te}}$$ ， $$Y_{te} = \{\mathbf{y}_q\}_{q=1}^{n_{te}}$$ ，跨模态信息检索的目标是计算两个不同模态数据的相似度，然后检索测试数据中对于任意模态的查询，与之相关的其他模态的数据。
 
 ## 研究现状
 
@@ -237,7 +237,7 @@ Ranking Canonical Correlation Analysis（RCCA）
 
 * [*Clickture* Dataset]()
 
-* [*MIRFLICKR-25K* Dataset](http://dl.acm.org/citation.cfm?id=1460104)
+* [*MIRFLICKR-25K* Dataset](http://press.liacs.nl/mirflickr/)
 
 * [*IAPR TC-12* Dataset](https://dl.acm.org/citation.cfm?id=1750081)
 
