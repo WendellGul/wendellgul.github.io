@@ -710,4 +710,8 @@ images: assets/images
 # Theme version
 version: 5.1.1
 
+reward_comment: 此时不赞何时赞！
+wechatpay: /assets/images/GU.png
+alipay: /assets/images/GU.png
+
 repository: wendellgul/wendellgul.github.io
