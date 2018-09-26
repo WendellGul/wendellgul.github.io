@@ -711,7 +711,7 @@ images: assets/images
 version: 5.1.1
 
 reward_comment: 此时不赞何时赞！
-wechatpay: /assets/images/GU.png
-alipay: /assets/images/GU.png
+wechatpay: /assets/images/wechatpay.jpeg
+alipay: /assets/images/alipay.jpeg
 
 repository: wendellgul/wendellgul.github.io
