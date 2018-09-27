@@ -10,6 +10,8 @@ Pairwise Relationship Guided Deep Hashing for Cross-Modal Retrieval（PRDH）论
 
 ![image-20180913110303751](https://ws2.sinaimg.cn/large/006tNbRwly1fv7qebns74j31g40d4q7b.jpg)
 
+> AAAI 2017
+
 本文提出了**基于数据对关系的深度哈希方法**，能同时学习每个模态的特征以及哈希码，并且将其整合到一个端到端的框架之中，还加入了**模态间**和**模态内**的基于关系对的约束，此外，本文还引入了**去关联约束（decorrelation constraints）**，来提高每个哈希**bit**的辨别能力。
 
 ## 模型
