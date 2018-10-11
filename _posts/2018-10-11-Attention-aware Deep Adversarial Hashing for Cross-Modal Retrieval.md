@@ -31,7 +31,7 @@ Attention-aware Deep Adversarial Hashing for Cross-Modal Retrieval 阅读笔记�
 * 相似矩阵：$$S\in \{0,1\}^{n\times n}$$，$$S_{ij} = 1$$ 表示第 $$i$$ 个图片和 $$j$$ 个文本相似
 * 相似的图像和文本的哈希码的汉明距离应该尽可能小
 
-###特征学习模块 $E^I,E^T$
+### 特征学习模块 $E^I,E^T$
 
 通过 VGGNet 来学习图像的特征，两层神经网络来学习文本特征，令 $$f_i^I = E^I(I_i)$$ 和 $$f_i^T = E^T(T_i)$$ 分别表示图像的**特征图**和文本的**特征向量**。
 
