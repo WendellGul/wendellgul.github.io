@@ -40,20 +40,25 @@ Attention-aware Deep Adversarial Hashing for Cross-Modal Retrieval 阅读笔记�
 ![image-20181011111527592](https://ws2.sinaimg.cn/large/006tNbRwly1fw443ozwioj30xw0cxtea.jpg)
 
 首先将图像特征图输入到一个核大小为 $$1 \times 1$$ 的卷积层中，假设第 $$i$$ 个图像的特征图为 $$f_i^I \in \mathbb{R} ^{H\times W\times C}$$，通过卷积层将 $$f_i^I$$ 压缩为一个矩阵 $$M_i^I = Conv(f_i^I)$$，其中 $$M_i^I \in \mathbb{R}^{H \times W}$$，第二步将 $$M_i^I$$ 输入到一个 softmax 层，得到概率矩阵 $$P_i^I$$，第三步，使用阈值函数获得 attention mask，阈值函数定义如下：
+
 $$
 Z_i^I(h,w) = \begin{cases}
 1 & P_i^I(h,w) \ge \alpha \\
 0 & P_i^I(h,w) \lt \alpha
 \end{cases}
 $$
+
 其中 $$\alpha$$ 为预定义的阈值，取值为 $$\frac{1}{H\times W}$$。阈值函数的输出即为二值掩码矩阵，基于这个掩码矩阵可以计算第 $$i$$ 个图像的 attended 特征和 unattended 特征：
+
 $$
 \breve{f}_i^I(h,w,c) = Z_i^I(h,w) \times f_i^I(h,w,w),\quad\textbf{(attended)}\\
 \hat{f}_i^I(h,w,c) = (1-Z_i^I(h,w))\times f_i^I(h,w,c),\quad \textbf{(unattended)}
 $$
+
 将整个过程表示为 $$[\breve{f}_i^I,\hat{f}_i^I] = G^I(f_i^I)$$。
 
 对于文本模态数据，类似地有：
+
 $$
 \begin{align}
 &M_i^T = {\rm fc}(f_i^T), \\
@@ -63,6 +68,7 @@ $$
 &\hat{f}_i^T(j)=(1-Z_i^T(j))\times f_i^T(j),\quad \textbf{(unattended)}
 \end{align}
 $$
+
 其中 $$fc$$ 为全连接层。
 
 因为BP算法不能直接对阈值函数求导，本文采用[这篇论文](https://arxiv.org/abs/1602.02830)中的方法传播阈值函数的梯度。
@@ -80,10 +86,13 @@ $$
 #### 跨模态检索损失
 
 该损失的目标是保留图像和文本的相似性，同时应用模态间的排序损失和模态内的排序损失来达到目标，即，不同模态数据的哈希码和同一模态数据的哈希码都应该保留他们的语义相似度，因此，跨模态检索损失被定义为：
+
 $$
 \min \mathcal{F}_{T\rightarrow I} + \mathcal{F}_{I\rightarrow T} +\mathcal{F}_{I\rightarrow I} +\mathcal{F}_{T\rightarrow T}
 $$
+
 其中前两项保留了不同模态的语义信息，后两项保留了同一模态的语义信息，$$\mathcal{F}_{A\rightarrow B}$$ 表示 $$A$$ 模态数据作为查询，$$B$$ 模态数据作为数据库的损失，定义如下：
+
 $$
 \mathcal{F}_{A\rightarrow B} = \sum_{\langle i, j, k \rangle} \max\{0, \varepsilon + \|H_i^A - H_j^B\| - \|H_i^A-H_k^B\} \\
 s.t. \quad \forall\langle i,j,k \rangle, S(i,j) > S(i,k)
@@ -99,13 +108,16 @@ $$
 * 注意力模块则尝试去寻找语义相似性没有被哈希模块成功保留的unattended区域，即此时 $$H_i^T$$ 距离 $$\hat{H}_k^I$$ 应该比 $$\hat{H}_j^I$$ 更近。
 
 图像到文本与上述类似，损失函数定义如下：
+
 $$
 \begin{align}
 \mathcal{F}_{T\rightarrow \hat{I}} + \mathcal{F}_{I\rightarrow \hat{T}} &= \sum_{\langle i,j,k \rangle} \max\{0, \varepsilon + \|H_i^T - \hat{H}_j^I\| - \|H_i^T - \hat{H}_k^I\|\} \\
 &+ \sum_{\langle i,j,k \rangle} \max\{0, \varepsilon + \|H_i^I - \hat{H}_j^T\| - \|H_i^I - \hat{H}_k^T\|\}
 \end{align}
 $$
+
 $$G^I,G^T$$ 尝试最大化上述损失而 $$D^I,D^T$$ 则是最小化上述损失：
+
 $$
 \min_{D^I,D^T} \max_{G^I,G^T}\mathcal{F}_{T\rightarrow \hat{I}} + \mathcal{F}_{I\rightarrow \hat{T}}
 $$
@@ -126,10 +138,13 @@ $$
 $$
 
 交替地进行模型的训练，首先将 $$G^I,G^T$$ 的参数固定，其他参数通过下式训练：
+
 $$
 \min_{E^I,E^T,D^I,D^T} \mathcal{F}(E^I,E^T,G^I,G^T,D^I,D^T)
 $$
+
 然后将 $$E^I,E^T,D^I,D^T$$ 固定，注意力模型可以通过下式训练：
+
 $$
 \max_{G^I,G^T}\mathcal{F}_{T\rightarrow \hat{I}} + \mathcal{F}_{I\rightarrow \hat{T}}
 $$
