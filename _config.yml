@@ -489,7 +489,7 @@ vkontakte_api:
 # To get your ID visit https://widgetpack.com
 rating:
   enable: false
-  id:     #<app_id>
+  id:     14354
   color:  fc6423
 
 
