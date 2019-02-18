@@ -1,6 +1,6 @@
 ---
 title: Leetcode Problem 2-Add Two Numbers
-catgory: LeetCode
+category: LeetCode
 tag:
  - linked list
  - math
