@@ -1,5 +1,5 @@
 ---
-title: Leetcode Problem 2-Add Two Numbers
+title: LeetCode Problem 2-Add Two Numbers
 category: LeetCode
 tag:
  - linked list

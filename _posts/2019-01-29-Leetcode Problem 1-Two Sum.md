@@ -1,5 +1,5 @@
 ---
-title: Leetcode Problem 1-Two Sum
+title: LeetCode Problem 1-Two Sum
 category: LeetCode
 tag:
  - array

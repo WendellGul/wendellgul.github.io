@@ -1,5 +1,5 @@
 ---
-title: Leetcode Problem 3-Longest Substring Without Repeating Characters
+title: LeetCode Problem 3-Longest Substring Without Repeating Characters
 category: LeetCode
 tag:
  - hash table
