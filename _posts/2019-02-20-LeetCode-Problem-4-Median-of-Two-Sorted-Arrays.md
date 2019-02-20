@@ -1,7 +1,7 @@
 ---
 title: LeetCode Problem 4-Median of Two Sorted Arrays
 category: LeetCode
-date: 2019-02-19
+date: 2019-02-20
 tag:
  - array
  - binary search
