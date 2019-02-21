@@ -24,7 +24,7 @@ tag:
 
 **说明：**
 
-假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 $[−2^{31},  2^{31 − 1}]$。如果数值超过这个范围，请返回  INT_MAX ($2^{31 − 1}$) 或 INT_MIN ($−2^{31}$) 。
+假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 $[−2^{31},  2^{31} − 1]$。如果数值超过这个范围，请返回  INT_MAX ($2^{31} − 1$) 或 INT_MIN ($−2^{31}$) 。
 
 **示例 1:**
 
@@ -91,5 +91,4 @@ int myAtoi(char* str) {
 ### 相似问题
 
 1. [Reverse Integer](https://wendellgul.github.io/leetcode/2019/02/21/LeetCode-Problem-7-Reverse-Integer/)
-
 2. [Valid Number]()

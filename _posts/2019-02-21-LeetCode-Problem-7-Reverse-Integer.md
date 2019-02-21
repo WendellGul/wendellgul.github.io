@@ -34,7 +34,7 @@ tag:
 
 **注意:**
 
-假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 $[−2^{31},  2^{31 − 1}]​$。请根据这个假设，如果反转后整数溢出那么就返回 0。
+假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 $[−2^{31},  2^{31} − 1]$。请根据这个假设，如果反转后整数溢出那么就返回 0。
 
 ### 思路一
 
@@ -83,5 +83,5 @@ class Solution:
 
 ### 相似问题
 
-1. [String to Integer (atoi)]()
+1. [String to Integer (atoi)](https://wendellgul.github.io/leetcode/2019/02/21/LeetCode-Problem-8-String-to-Integer-(atoi)/)
 2. [Reverse Bits]()
