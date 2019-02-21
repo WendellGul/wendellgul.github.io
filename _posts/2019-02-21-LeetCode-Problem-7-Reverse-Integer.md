@@ -55,12 +55,15 @@ class Solution:
         return rs
 ```
 
-在可以定义32位整型的语言中，可以使用下面的方式判断溢出：
+在可以定义32位整型的语言中，可以使用下面的方式判断溢出（例子为C语言）：
 
-```java
-int newResult = rs * 10 + r;
-if ((newResult - r) / 10 != rs) { 
-	return 0;
+```c
+while (x > 0) {
+    int r = x % 10;
+    if (rs > INT_MAX / 10 || (rs == INT_MAX / 10 && r > 7))
+        return 0;
+    rs = rs * 10 + r;
+    x = x / 10;
 }
 ```
 
