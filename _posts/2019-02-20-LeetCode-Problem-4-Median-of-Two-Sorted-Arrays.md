@@ -89,7 +89,7 @@ B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
 2) max(left_part) <= min(right_part)
 ```
 
-那么我们就可以得到中位数 $median = \frac{\max(left\_part) + \min(right\_part)}{2}$。
+那么我们就可以得到中位数 $$median = \frac{\max(left\_part) + \min(right\_part)}{2}$$。
 
 为了满足上述两个条件，我们必须保证：
 
