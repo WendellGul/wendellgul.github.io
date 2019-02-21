@@ -94,3 +94,11 @@ class Solution:
         return s[rs: re+1]
 ```
 
+### 相似问题
+
+1. [Shortest Palindrome](https://leetcode.com/problems/shortest-palindrome/)
+2. [Palindrome Permutation](https://leetcode.com/problems/palindrome-permutation/)
+3. [Palindrome Pairs](https://leetcode.com/problems/palindrome-pairs/)
+4. [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)
+5. [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)
+

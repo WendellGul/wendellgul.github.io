@@ -1,9 +1,11 @@
 ---
 title: LeetCode Problem 1-Two Sum
 category: LeetCode
+date: 2019-01-29
 tag:
  - array
  - hash table
+ - easy
 ---
 
 给定一个整型数组和一个目标整数，返回数组中和等于目标的两个元素的下标。
@@ -113,3 +115,13 @@ class Solution:
 ### Note
 
 1. 使用Python 3 时，用`enumerate(nums)`方法比`range(len(nums))`遍历数组会更快。
+
+### 相似问题
+
+1. [3Sum](https://leetcode.com/problems/3sum/)
+2. [4Sum](https://leetcode.com/problems/4sum/)
+3. [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+4. [Two Sum III - Data structure design](https://leetcode.com/problems/two-sum-iii-data-structure-design/)
+5. [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)
+6. [Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+

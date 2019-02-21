@@ -1,9 +1,11 @@
 ---
 title: LeetCode Problem 2-Add Two Numbers
 category: LeetCode
+date: 2019-02-18
 tag:
  - linked list
  - math
+ - medium
 ---
 
 给出两个 **非空** 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 **逆序** 的方式存储的，并且它们的每个节点只能存储 **一位** 数字。
@@ -144,3 +146,12 @@ class Solution:
 1. Python 中`a=b=c`语句的执行顺序：`a=c, b=a`，以此类推；
 2. 链表空头指针的应用；
 3. 注意链表结点为空的边界条件判断。
+
+### 相似问题
+
+1. [Multiply Strings](https://leetcode.com/problems/multiply-strings/)
+2. [Add Binary](https://leetcode.com/problems/add-binary/)
+3. [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)
+4. [Add Strings](https://leetcode.com/problems/add-strings/)
+5. [Add Two Numbers II](https://leetcode.com/problems/add-two-numbers-ii/)
+

@@ -1,6 +1,7 @@
 ---
 title: LeetCode Problem 3-Longest Substring Without Repeating Characters
 category: LeetCode
+date: 2019-02-19
 tag:
  - hash table
  - two pointers
@@ -103,4 +104,8 @@ class Solution:
             appear[c] = i
         return rs
 ```
+
+### 相似问题
+
+1. [Longest Substring with At Most Two Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/)
 
