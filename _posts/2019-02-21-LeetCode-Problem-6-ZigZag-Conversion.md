@@ -72,7 +72,7 @@ class Solution:
 
 ### 思路二
 
-找出 Z 字型变换的模式。`Δ`为每一行中两个数的间隔。
+找出 Z 字型变换的模式。`Δ`为每一行中两个数的间隔。时间复杂度$O(n)$。
 
 ```
 /*n=numRows
@@ -109,6 +109,3 @@ class Solution:
                     rs += s[idx]
         return rs
 ```
-
-
-
