@@ -1,6 +1,6 @@
 ---
 title: LeetCode Problem 6-ZigZag Conversion
-categoty: LeetCode
+category: LeetCode
 date: 2019-02-21
 tag:
  - string
