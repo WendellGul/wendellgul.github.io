@@ -100,6 +100,6 @@ class Solution:
 
 ### 相似问题
 
-1. [Roman to Integer](https://leetcode.com/problems/roman-to-integer/)
+1. [Roman to Integer](https://wendellgul.github.io/leetcode/2019/02/22/LeetCode-Problem-13-Roman-to-Integer/)
 2. [Integer to English Words](https://leetcode.com/problems/integer-to-english-words/)
 
