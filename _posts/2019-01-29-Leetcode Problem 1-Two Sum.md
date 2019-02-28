@@ -118,7 +118,7 @@ class Solution:
 
 ### 相似问题
 
-1. [3Sum](https://leetcode.com/problems/3sum/)
+1. [3Sum](https://wendellgul.github.io/leetcode/2019/02/25/LeetCode-Problem-15-3Sum/)
 2. [4Sum](https://leetcode.com/problems/4sum/)
 3. [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
 4. [Two Sum III - Data structure design](https://leetcode.com/problems/two-sum-iii-data-structure-design/)
