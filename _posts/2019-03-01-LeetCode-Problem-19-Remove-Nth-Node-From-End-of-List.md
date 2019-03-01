@@ -74,4 +74,3 @@ class Solution:
         p.next = p.next.next
         return head
 ```
-
