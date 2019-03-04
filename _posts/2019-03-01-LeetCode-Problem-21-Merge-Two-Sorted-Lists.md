@@ -47,9 +47,9 @@ class Solution:
         return head.next
 ```
 
-###思路二
+### 思路二
 
-通过递归实现。时间复杂度 $O(n)$。
+通过递归实现。时间复杂度 $O(m + n)$。
 
 ```python
 class Solution:
