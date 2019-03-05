@@ -49,7 +49,7 @@ class Solution:
 
 ### 思路二
 
-通过递归实现。时间复杂度 $O(m + n)$。
+通过递归实现。时间复杂度 $O(m + n)​$。
 
 ```python
 class Solution:
@@ -68,7 +68,7 @@ class Solution:
 
 ### 相似问题
 
-1. [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+1. [Merge k Sorted Lists](https://wendellgul.github.io/leetcode/2019/03/04/LeetCode-Problem-23-Merge-k-Sorted-Lists/)
 2. [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
 3. [Sort List](https://leetcode.com/problems/sort-list/)
 4. [Shortest Word Distance II](https://leetcode.com/problems/shortest-word-distance-ii/)
