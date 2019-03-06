@@ -33,7 +33,7 @@ $$
 l_{t}\left(\mathbf{x}, \mathbf{x}^{+}, \mathbf{x}^{-}\right)=\left[m-\left|H(\mathbf{x})-H\left(\mathbf{x}^{-}\right)\right|+\left|H(\mathbf{x})-H\left(\mathbf{x}^{+}\right)\right|\right]_{+}
 $$
 
-其中 $$[\cdot]_+ \doteq \max(0, \cdot)$$，$|\cdot|$ 是距离度量方式（如汉明距离），$m$ 是超参。
+其中 $$[\cdot]_+ \doteq \max(0, \cdot)$$，$$\vert \cdot \vert$$ 是距离度量方式（如汉明距离），$$m$$ 是超参。
 
 定义 $g(\cdot, \cdot)$ 是一个单调的，[Lipschitz连续](https://zh.wikipedia.org/wiki/%E5%88%A9%E6%99%AE%E5%B8%8C%E8%8C%A8%E9%80%A3%E7%BA%8C)的函数，$g(\cdot, \cdot)$ 满足：
 
@@ -112,7 +112,7 @@ $$
 \end{align}
 $$
 
-令 $$l_{c}\left(\mathbf{h}_{i}, y_{i}\right)=\frac{1}{C-1} \sum_{l=1, l \neq y_{i}}^{C} g\left(\left|\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right|,\left|\mathbf{h}_{i}-\mathbf{c}_{l}\right|\right)$$，则有：
+令 $$l_{c}\left(\mathbf{h}_{i}, y_{i}\right)=\frac{1}{C-1} \sum_{l=1, l \neq y_{i}}^{C} g\left(\left\vert\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right \vert,\left\vert\mathbf{h}_{i}-\mathbf{c}_{l}\right\vert\right)$$，则有：
 
 $$
 \mathcal{L}_{t} \leq\left(\frac{n}{C}\right)^{2}(C-1) \sum_{i=1}^{n}\left[l_{c}\left(\mathbf{h}_{i}, y_{i}\right)+2\left|\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right|\right]
@@ -136,15 +136,15 @@ $$
 
 从上式可以看出，*UUB* 的时间复杂度为 $O(n)$，$$\mathbf{c}_1,…,\mathbf{c}_C$$ 可以看做是 $C$ 个簇中心，每个簇对应一个语义标签。
 
-然而，直接最小化 *UUB* 可能不够稳定，因为 *UUB* 中的 $$|\mathbf{h}_i - \mathbf{c}_{y_i}|$$ 项在 *UUB* 中所占权重较大，为了满足 $$|\mathbf{h}_i - \mathbf{c}_{y_i}| = 0$$，可能使得 $$\mathbf{c}_{y_i}$$ 和 $$\mathbf{h}_i$$ 收敛到 $$\mathbf{0}$$。为了解决这个问题，需要为 $$\mathcal{L}_t$$ 寻找更严格的一元上界，即：
+然而，直接最小化 *UUB* 可能不够稳定，因为 *UUB* 中的 $$\left\vert\mathbf{h}_i - \mathbf{c}_{y_i}\right\vert​$$ 项在 *UUB* 中所占权重较大，为了满足 $$\left\vert\mathbf{h}_i - \mathbf{c}_{y_i}\right\vert = 0​$$，可能使得 $$\mathbf{c}_{y_i}​$$ 和 $$\mathbf{h}_i​$$ 收敛到 $$\mathbf{0}​$$。为了解决这个问题，需要为 $$\mathcal{L}_t​$$ 寻找更严格的一元上界，即：
 
 $$
 \mathcal{L}_{t} \leq M_{t} \mathcal{L}_{u} \quad \mathcal{L}_{u}=\sum_{i=1}^{n}\left[l_{c}\left(\mathbf{h}_{i}, y_{i}\right)+\lambda\left|\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right|\right]
 $$
 
-其中， $$M_{t}=\left(\frac{n}{C}\right)^{2}(C-1), \lambda > 0$$。上式即为语义簇一元损失（*SCUL*）。
+其中， $$M_{t}=\left(\frac{n}{C}\right)^{2}(C-1), \lambda > 0​$$。上式即为语义簇一元损失（*SCUL*）。
 
-本文通过实验，在两个类别中进行测试，通过计算真实三元组损失，然后用 $$\lambda \doteq\left(\mathcal{L}_{t} / M_{t}-\sum_{i=1}^{n} l_{c}\left(\mathbf{h}_{i}, y_{i}\right)\right) / \sum_{i=1}^{n}\left|\mathbf{h}_{\mathbf{i}}-y_{i}\right|$$ 来估计 $$\lambda$$ 的取值，有下图 (a) 可以看出，$$\lambda$$ 的值在整个过程中都很小，所以使用相对小的 $$\lambda$$ 的值可以得到 $$\mathcal{L}_t$$ 更严格的一元上界。
+本文通过实验，在两个类别中进行测试，通过计算真实三元组损失，然后用 $$\lambda \doteq\left(\mathcal{L}_{t} / M_{t}-\sum_{i=1}^{n} l_{c}\left(\mathbf{h}_{i}, y_{i}\right)\right) / \sum_{i=1}^{n}\left\vert\mathbf{h}_{\mathbf{i}}-y_{i}\right\vert​$$ 来估计 $$\lambda​$$ 的取值，有下图 (a) 可以看出，$$\lambda​$$ 的值在整个过程中都很小，所以使用相对小的 $$\lambda​$$ 的值可以得到 $$\mathcal{L}_t​$$ 更严格的一元上界。
 
 ![image-20190306145505687](https://ws3.sinaimg.cn/large/006tKfTcly1g0t2z4yc36j310y0gggq5.jpg)
 
@@ -169,7 +169,7 @@ $$
 \end{align}
 $$
 
-其中 $$q(x)=\frac{C-x}{C-1}(1-p)^{x}, Q=(1-p)^{2}\left(1-p^{2}\right)^{C-2}$$，$$|Y_i|$$ 表示 $$\mathbf{x}_i$$ 包含的标签的数目，并且：
+其中 $$q(x)=\frac{C-x}{C-1}(1-p)^{x}, Q=(1-p)^{2}\left(1-p^{2}\right)^{C-2}​$$，$$\vert Y_i\vert​$$ 表示 $$\mathbf{x}_i​$$ 包含的标签的数目，并且：
 
 $$
 l_{m c}\left(\mathbf{h}_{i}, Y_{i}\right)=\frac{1}{C-\left|Y_{i}\right|} \sum_{s \in Y_{i}} \sum_{t \notin Y_{i}} g\left(\left|\mathbf{h}_{i}-\mathbf{c}_{s}\right|,\left|\mathbf{h}_{i}-\mathbf{c}_{t}\right|\right)
@@ -207,7 +207,7 @@ $$
 \min _{F, \mathbf{C}} \mathcal{L}_{u}=\sum_{i=1}^{n}\left[l_{c}\left(\mathbf{h}_{i}, y_{i}\right)+\lambda\left|\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right|\right]
 $$
 
-其中 $$|\cdot|$$ 为欧式距离，正如上文讨论的，此损失的训练复杂度为 $O(n)$，并且与三元组损失有着理论关系。为了加快收敛，文中加入了分类损失 $$\mathcal{L}_{1}=\sum_{i=1}^{n} l_{1}\left(\mathbf{x}_{i}, y_{i}\right)$$ 作为另一个损失项：
+其中 $$\vert \cdot\vert​$$  为欧式距离，正如上文讨论的，此损失的训练复杂度为 $O(n)​$，并且与三元组损失有着理论关系。为了加快收敛，文中加入了分类损失 $$\mathcal{L}_{1}=\sum_{i=1}^{n} l_{1}\left(\mathbf{x}_{i}, y_{i}\right)​$$ 作为另一个损失项：
 
 $$
 \min _{F, \mathbf{C}} \mathcal{L}=\mathcal{L}_{u}+\mu \mathcal{L}_{1}=\sum_{i=1}^{n}\left[l_{c}\left(\mathbf{h}_{i}, y_{i}\right)+\mu l_{1}\left(\mathbf{x}_{i}, y_{i}\right)+\lambda\left|\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right|\right]
@@ -219,11 +219,11 @@ $$
 l_{c}\left(\mathbf{h}_{i}, y_{i}\right)=-\log \frac{\exp \left(-\left|\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right|\right)}{\sum_{j=1}^{C} \exp \left(-\left|\mathbf{h}_{i}-\mathbf{c}_{j}\right|\right)}
 $$
 
-对于多标签问题，上式中的 $$l_{c}\left(\mathbf{h}_{i}, y_{i}\right)+\lambda\left|\mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right|$$ 可以被替换为 $$q\left(\left|Y_{i}\right|\right) l_{m c}\left(\mathbf{h}_{i}, Y_{i}\right)+\lambda \sum_{s \in Y_{i}}\left|\mathbf{h}_{i}-\mathbf{c}_{s}\right|$$，$$l_{mc}$$ 在上文中有定义，为了简单起见，定义 $$q(x) = 1/x$$，$$l_1(\mathbf{x}_i, y_i)$$ 是多分类 *Softmax* 损失。
+对于多标签问题，上式中的 $$l_{c}\left(\mathbf{h}_{i}, y_{i}\right)+\lambda\left\vert \mathbf{h}_{i}-\mathbf{c}_{y_{i}}\right\vert$$ 可以被替换为 $$q\left(\left\vert Y_{i}\right \vert \right) l_{m c}\left(\mathbf{h}_{i}, Y_{i}\right)+\lambda \sum_{s \in Y_{i}}\left\vert \mathbf{h}_{i}-\mathbf{c}_{s}\right\vert$$，$$l_{mc}$$ 在上文中有定义，为了简单起见，定义 $$q(x) = 1/x$$，$$l_1(\mathbf{x}_i, y_i)$$ 是多分类 *Softmax* 损失。
 
 #### 量化损失
 
-本文中没有使用传统的量化损失，通过限制 $$F(x)$$ 的范数，使 $$F(x)$$ 的值接近 +1/-1，而是采取策略令 $$F(x)$$ 远离 $$\mathbf{0}$$，减少通过 sgn 函数得到的哈希码与 $$F(x)$$ 的差异。定义量化损失：
+本文中没有使用传统的量化损失，通过限制 $$F(x)​$$ 的范数，使 $$F(x)​$$ 的值接近 +1/-1，而是采取策略令 $$F(x)​$$ 远离 $$\mathbf{0}​$$，减少通过 sgn 函数得到的哈希码与 $$F(x)​$$ 的差异。定义量化损失：
 
 $$
 l_{q}(\mathbf{f})=1-\frac{\mathbf{1}^{\mathrm{T}} \operatorname{abs}(\mathbf{f})}{\|\mathbf{1}\|_{q}\|\mathbf{f}\|_{p}}
