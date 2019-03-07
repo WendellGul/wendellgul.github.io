@@ -52,6 +52,7 @@ $$
 此时，$$g(a, b) = [m + a - b]_+​$$。
 
 假设 $S$ 是相似矩阵，$$(i, j) \in S$$ 表示 $$\mathbf{x}_i$$ 和 $$\mathbf{x}_j$$ 相似，则哈希学习的目标是优化下面这个三元组损失函数：
+
 $$
 \min _{H} \mathcal{L}_{t}=\sum_{(i, j) \in S,(i, k) \notin S} g\left(\left|\mathbf{h}_{i}-\mathbf{h}_{j}\right|,\left|\mathbf{h}_{i}-\mathbf{h}_{k}\right|\right)
 $$
