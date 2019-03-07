@@ -105,4 +105,4 @@ class Solution:
 
 ### 相似问题
 
-1. [Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)
+1. [Reverse Nodes in k-Group](https://wendellgul.github.io/leetcode/2019/03/07/LeetCode-Problem-25-Reverse-Nodes-in-k-Group/)
