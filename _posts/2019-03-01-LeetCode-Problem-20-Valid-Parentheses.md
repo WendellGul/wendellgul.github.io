@@ -76,5 +76,5 @@ class Solution:
 ### 相似问题
 
 1. [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
-2. [Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/)
+2. [Longest Valid Parentheses](https://wendellgul.github.io/leetcode/2019/03/12/LeetCode-Problem-32-Longest-Valid-Parentheses/)
 3. [Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/)
