@@ -122,4 +122,4 @@ class Solution {
 
 ### 相似问题
 
-1. [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/)
+1. [Sudoku Solver](https://wendellgul.github.io/leetcode/2019/03/13/LeetCode-Problem-37-Sudoku-Solver/)
