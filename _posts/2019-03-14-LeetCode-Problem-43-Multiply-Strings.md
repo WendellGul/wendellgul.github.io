@@ -35,7 +35,7 @@ tag:
 
 按每一位相乘，需要注意的是每次的乘积在结果中的位置。
 
-```python 
+```python
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
         rs = [0] * (len(num1) + len(num2))
