@@ -55,7 +55,7 @@ class Solution:
                 return
             for i in range(start, len(nums)):
                 # 下一次 start 参数为 i 因为可以重复
-                backtrack(result, tmp_list + [nums[i]], nums, remain - nums[i], i)
+                backtrack(result, tmp_list+[nums[i]], nums, remain-nums[i], i)
         
         rs = []
         backtrack(rs, [], candidates, target, 0)
