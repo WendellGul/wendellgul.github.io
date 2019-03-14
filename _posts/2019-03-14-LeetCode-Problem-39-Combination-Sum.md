@@ -65,7 +65,7 @@ class Solution:
 ### 相似问题
 
 1. [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
-2. [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)
+2. [Combination Sum II](https://wendellgul.github.io/leetcode/2019/03/14/LeetCode-Problem-40-Combination-Sum-II/)
 3. [Combinations](https://leetcode.com/problems/combinations/)
 4. [Combination Sum III](https://leetcode.com/problems/combination-sum-iii/)
 5. [Factor Combinations](https://leetcode.com/problems/factor-combinations/)
