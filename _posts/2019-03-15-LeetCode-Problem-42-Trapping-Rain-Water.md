@@ -31,14 +31,10 @@ tag:
 * 初始化 `ans = 0`
 * 从左到右循环数组 `i`
   * 初始化 `max_left = max_right = 0`
-
   * 从当前位置向左遍历数组，找到左边最大的高度
     `max_left = max(max_left, height[j])`
-
   * 从当前位置向右遍历数组，找到右边最大的高度
-
     `max_right = max(max_right, height[j])`
-
   * 当前位置 `i` 所能装的水的数量就为 `min(max_left, max_right) - height[i]`
 
 时间复杂度 $O(n^2)$，空间复杂度 $O(1)$。
