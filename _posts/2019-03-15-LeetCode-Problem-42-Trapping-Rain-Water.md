@@ -26,7 +26,7 @@ tag:
 
 穷举法。穷举的时候计算下图中每个区域装水的数量。
 
-![rainwatertrap copy](rainwatertrap copy.png)
+![006tKfTcgy1g13jameadnj30bg04hmx3](https://ws3.sinaimg.cn/large/006tKfTcly1g13lt4layyj30bg04hdfu.jpg)
 
 * 初始化 `ans = 0`
 * 从左到右循环数组 `i`
