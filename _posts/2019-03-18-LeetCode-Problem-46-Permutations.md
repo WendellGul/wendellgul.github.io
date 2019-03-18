@@ -65,6 +65,6 @@ class Solution:
 ### 相似问题
 
 1. [Next Permutation](https://leetcode.com/problems/next-permutation/)
-2. [Permutations II](https://leetcode.com/problems/permutations-ii/)
+2. [Permutations II](https://wendellgul.github.io/leetcode/2019/03/18/LeetCode-Problem-47-Permutations-II/)
 3. [Permutation Sequence](https://leetcode.com/problems/permutation-sequence/)
 4. [Combinations](https://leetcode.com/problems/combinations/)
