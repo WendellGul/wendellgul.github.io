@@ -23,7 +23,7 @@ Deep Visual-Semantic Hashing for Cross-Modal Retrieval（DVSH）论文阅读笔�
 * $$\mathbf{y}_i = \langle\mathbf{y}_{i1}, \mathbf{y}_{i2},\cdots, \mathbf{y}_{iT}\rangle \in \mathbb{R}^{D_y \times T}$$ 表示第 $$i$$ 个句子的词序列，其中 $$\mathbf{y}_{it} \in \mathbb{R}^{D_y}$$ 是序列 $$i$$ 中时刻 $$t$$ 的词的one-hot向量，词典大小 $$D_y$$
 * 相似标签 $$s_{ij} = 1$$ 表示 $$\mathbf{o}_i$$ 和 $$\mathbf{o}_j$$ 相似，$$s_{ij} = -1$$ 表示不相似，相似矩阵 $$\mathcal{S} = \{s_{ij}\}$$ 一般从数据的语义标签或者点击查询的反馈中获得
 
-本文提出的方法是学习**融合函数**，$$f(\mathbf{x},\mathbf{y}): (\mathbb{R}^{D_x}, \mathbb{R}^{D_y\times T}) \mapsto \{-1, 1\}^K$$，将图像和文本数据映射成 $$K$$ 维的Hamming距离空间 $$\mathcal{H}$$ 中，并且保留他们之间的相关关系；模型同时还学习两个具体模态的哈希函数 $$f_x(\mathbf{x}):\mathbb{R}^{D_x} \mapsto \{-1, 1\}^K$$ 和 $$f_y(\mathbf{y}):\mathbb{R}^{D_y \times T} \mapsto \{-1,1\}^K$$ ，将数据库中的每一个图像和句子数据都编码成二进制码 $$\mathbf{u} \in \{-1,1\}^K$$ 和 $$\mathbf{v} \in \{-1,1\}^K$$ 。
+本文提出的方法是学习**融合函数**，$$f(\mathbf{x},\mathbf{y}): (\mathbb{R}^{D_x}, \mathbb{R}^{D_y\times T}) \mapsto \{-1, 1\}^K$$，将图像和文本数据映射成 $$K$$ 维的Hamming距离空间 $$\mathcal{H}$$ 中，并且保留他们之间的相关关系；模型同时还学习两个具体模态的哈希函数 $$f_x(\mathbf{x}):\mathbb{R}^{D_x} \mapsto \{-1, 1\}^K$$ 和 $$f_y(\mathbf{y}):\mathbb{R}^{D_y \times T} \mapsto \{-1,1\}^K$$ ，将数据库中的每一个图像和句子数据都编码成二进制码 $$\mathbf{u} \in \{-1,1\}^K$$ 和 $$\mathbf{v} \in \{-1,1\}^K$$ 。
 
 本文的模型中，CNN使用的是AlexNet，RNN使用的是LSTM，模型的输入 $$(\mathbf{o}_i,\mathbf{o}_j,s_{ij})$$ ，然后将其传入特征学习和哈希码生成的流水线中。
 
