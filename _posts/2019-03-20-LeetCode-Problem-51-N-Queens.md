@@ -87,5 +87,5 @@ class Solution:
 
 ### 相似问题
 
-1. [N-Queens II](https://leetcode.com/problems/n-queens-ii/)
+1. [N-Queens II](https://wendellgul.github.io/leetcode/2019/03/20/LeetCode-Problem-52-N-Queens-II/)
 2. [Grid Illumination](https://leetcode.com/problems/grid-illumination/)
