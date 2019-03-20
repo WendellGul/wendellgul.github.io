@@ -62,7 +62,7 @@ $$
 \begin{aligned} D_{q} &=\sum_{i=1}^{\hat{n}} \sum_{j=1}^{\hat{n}} \frac{k\left(\boldsymbol{z}_{i}^{q}, \boldsymbol{z}_{j}^{q}\right)}{\hat{n}^{2}}+\sum_{i=1}^{\overline{n}} \sum_{j=1}^{\overline{n}} \frac{k\left(\boldsymbol{z}_{i}^{x}, \boldsymbol{z}_{j}^{x}\right)}{\overline{n}^{2}} \\ &-2 \sum_{i=1}^{\hat{n}} \sum_{j=1}^{\overline{n}} \frac{k\left(\boldsymbol{z}_{i}^{q}, \boldsymbol{z}_{j}^{x}\right)}{\hat{n} \overline{n}} \end{aligned}
 $$
 
-其中 $$k\left(\boldsymbol{z}_{i}, \boldsymbol{z}_{j}\right)=\exp \left(-\gamma\left\Vert\boldsymbol{z}_{i}-\boldsymbol{z}_{j}\right\Vert^{2}\right)$$ 是高斯核函数。相似的，替换 $$q, x, \hat n, \bar n$$ 为 $$d,y,\hat m, \bar m$$，就可得到辅助变量 $$\bar{\mathcal{Y}}$$ 和 $$\mathcal{Y}_d$$ 分布的 MMD $$D_d​$$。 
+其中 $$k\left(\boldsymbol{z}_{i}, \boldsymbol{z}_{j}\right)=\exp \left(-\gamma\left\Vert\boldsymbol{z}_{i}-\boldsymbol{z}_{j}\right\Vert^{2}\right)$$ 是高斯核函数。相似的，替换 $$q, x, \hat n, \bar n$$ 为 $$d,y,\hat m, \bar m$$，就可得到辅助变量 $$\bar{\mathcal{Y}}$$ 和 $$\mathcal{Y}_d$$ 分布的 MMD $$D_d$$。 
 
 总的损失函数为：
 
