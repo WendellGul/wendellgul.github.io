@@ -29,6 +29,8 @@ Comprehensive Distance-Preserving Autoencoders for Cross-Modal Retrieval 论文�
 
    在之前的无监督跨模态检索方法中，只考虑了上图中实线之间的关系，没有考虑虚线之间的关系。
 
+<!-- more -->
+
 ### 主要贡献
 
 * 使用降噪自编码机来减少特征中噪声的影响，并且提出了一个综合距离保持的公共子空间，来探索不同模态之间的关系；

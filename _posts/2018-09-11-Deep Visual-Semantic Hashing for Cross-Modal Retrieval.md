@@ -14,6 +14,8 @@ Deep Visual-Semantic Hashing for Cross-Modal Retrieval（DVSH）论文阅读笔�
 
 本文提出了一个**深度图像语义哈希（DVSH）**模型，用来为图像和句子生成哈希码。模型将对图像操作的CNN、对句子操作的RNN和一个结构化的最大间隔目标函数结合起来，同时有效地实现了多模态特征抽取和跨模态哈希表示。
 
+<!-- more -->
+
 ## 模型
 
 ![image-20180911101828745](https://ws1.sinaimg.cn/large/0069RVTdly1fv5dv6ggikj31kw0htqmi.jpg)

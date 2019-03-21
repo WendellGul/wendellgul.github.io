@@ -18,6 +18,8 @@ Weakly Supervised Deep Image Hashing through Tag Embeddings 论文阅读笔记�
 
 弱监督图像哈希和跨模态哈希的区别，前者使用 $(image, tags)$ 对进行学习，后者使用 $(image, tags, labels)$ 三元组进行学习，所以前者称为弱监督，而后者则是监督学习；而且，前者学习的目标是借助 tag 信息将图像映射到哈希空间，进行的还是图像之间的检索，后者则是 image 和 tags 相互影响，学习目标是将图像和文本一起映射到同一个哈希空间，进行的是图像到文本或者文本到图像的检索问题。
 
+<!-- more -->
+
 ### 模型
 
 ![image-20190311114108871](https://ws3.sinaimg.cn/large/006tKfTcgy1g0ypeyvqduj31s20lwk0i.jpg)

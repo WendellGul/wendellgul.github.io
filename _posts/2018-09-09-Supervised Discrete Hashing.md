@@ -18,7 +18,9 @@ Supervised Discrete Hashing（SDH）论文阅读笔记。
 
 SDH的关键技术在于直接解决没有经过任何**松弛操作**的**离散优化**问题。首先引入了一个辅助变量，将目标函数转化成可以以正则化项的形式解决的问题；然后使用DCC算法解决二值优化问题。
 
-## SDH
+<!-- more -->
+
+### SDH
 
 * $n$ 个样本 $$\mathbf{X} = \lbrace \mathbf{x}_i\rbrace_{i=1}^n$$
 
@@ -86,7 +88,7 @@ $$
 
 这一步与损失函数无关。
 
-### 使用 $l_2$ 损失
+#### 使用 $l_2$ 损失
 
 (3) 是写为：
 
@@ -174,7 +176,7 @@ $$
 \mathbf{z} = {\rm sgn}(\mathbf{q} - \mathbf{B}'^T\mathbf{W}'\mathbf{v}) \qquad (15)
 $$
 
-### 使用hinge损失
+#### 使用hinge损失
 
 损失函数为：
 
@@ -240,6 +242,6 @@ SDH 算法如下所示：
 
 ![1536473767360](/assets/images/Supervised Discrete Hashing/1536473767360.png)
 
-## 实验
+### 实验
 
 详见论文。

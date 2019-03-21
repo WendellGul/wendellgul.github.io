@@ -16,6 +16,8 @@ Generative Cross-modal Learning Network（GXN）论文阅读笔记。
 
 总的来看，模型包含三个步骤：**观察（look）**，**想象（imagine）**和**匹配（match）**。给定一个图片或者文本的查询，首先“观察”这个查询，提取一个**抽象（abstract）**的表示；然后，在另一个模态中“想象”查询目标（文本或图像）应该的“样子”，并且得到一个更加准确的 **grounded representation**，我们通过让一个模态的特征表示（待学习）来生成另一个模态的数据，然后将生成的数据与真实的数据进行比较；之后，使用相关度得分来匹配正确的图像-文本对，相关度得分是基于 **grounded** 和 **abstract** 表示的组合来计算的。
 
+<!-- more -->
+
 ## 模型
 
 ![1534906127816](/assets/images/Look, Imagine and Match-Improving Textual-Visual Cross-Modal Retrieval with Generative Models/1534906127816.png)

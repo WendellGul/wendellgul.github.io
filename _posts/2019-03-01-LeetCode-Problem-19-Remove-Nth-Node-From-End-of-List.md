@@ -26,6 +26,8 @@ tag:
 
 你能尝试使用一趟扫描实现吗？
 
+<!-- more -->
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:

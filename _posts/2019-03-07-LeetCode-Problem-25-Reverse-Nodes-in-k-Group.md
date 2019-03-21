@@ -24,6 +24,8 @@ k个一组翻转链表。给出一个链表，每 *k* 个节点一组进行翻�
 - 你的算法只能使用常数的额外空间。
 - **你不能只是单纯的改变节点内部的值**，而是需要实际的进行节点交换。
 
+<!-- more -->
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:

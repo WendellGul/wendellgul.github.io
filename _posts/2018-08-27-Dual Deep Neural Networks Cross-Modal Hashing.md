@@ -18,6 +18,8 @@ DDCMH训练有三个阶段，第一个阶段，DDCMH利用**单模态**的Hash�
 
 模型可以利用任意的单模态Hash方法，这意味着DDCMH可以作为框架，扩展单模态Hash方法来进行跨模态检索。
 
+<!-- more -->
+
 ## 模型
 
 ![1535357033951](/assets/images/Dual Deep Neural Networks Cross-Modal Hashing/1535357033951.png)

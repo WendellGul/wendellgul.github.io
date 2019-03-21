@@ -20,6 +20,8 @@ Production Quantization（乘积量化）方法小结。
 
 我们的目标是建立 $$M$$ 个codebook，$$C = [C_1, ..., C_m, ..., C_M]$$，每个codebook由 $$k$$ 个codeword 组成，即 $$C_m = [\mathbf{c}_{m1},...,\mathbf{c}_{mk}], \ \mathbf{c}_{mk} \in \mathbb{R}^{d/M}$$，注意，这里的每个codeword $$\mathbf{c}_{mk}$$ 与子向量 $$\mathbf{x}_m$$ 的维度相同，那么，codebook是怎么建立起来的呢？
 
+<!-- more -->
+
 #### Codebook
 
 假设数据库中有 $$n$$ 个数据，每个数据的特征维度为 $$d$$，这里介绍传统的无监督方法（k-means）来得到codebook。

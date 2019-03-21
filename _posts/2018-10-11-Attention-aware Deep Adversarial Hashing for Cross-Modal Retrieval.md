@@ -21,6 +21,8 @@ Attention-aware Deep Adversarial Hashing for Cross-Modal Retrieval 阅读笔记�
 
 为了获得好的 attention masks 并产生有效的 hash 码，本文还提出了**对抗检索损失**和**跨模态检索损失**。
 
+<!-- more -->
+
 ## 模型
 
 ![image-20181011110106177](https://ws2.sinaimg.cn/large/006tNbRwly1fw43orfiauj30vh0ek7dx.jpg)

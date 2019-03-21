@@ -18,6 +18,8 @@ Asymmetric Deep Supervised Hashing（ADSH）论文阅读笔记。
 
 ADSH将查询点和数据库点做非对称地处理，只为查询点学习一个深度哈希函数，而数据库点的二进制表示直接学习得到。
 
+<!-- more -->
+
 ## 问题定义
 
 * $\mathbf{X} = \{x_i\}_{i=1}^m$ 表示 $m$ 个查询数据点

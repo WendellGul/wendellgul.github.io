@@ -12,6 +12,8 @@ DCMH论文阅读笔记。
 
 > CVPR 2018
 
+<!-- more -->
+
 ## 模型结构
 
 ![1533709036203](/assets/images/Deep Cross-Modal Hashing/1533709036203.png)

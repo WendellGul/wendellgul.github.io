@@ -17,6 +17,8 @@ tag:
 给定 1->2->3->4, 你应该返回 2->1->4->3.
 ```
 
+<!-- more -->
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:

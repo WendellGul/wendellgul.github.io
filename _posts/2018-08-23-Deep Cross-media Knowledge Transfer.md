@@ -23,6 +23,8 @@ Deep Cross-media Knowledge Transfer（DCKT）论文阅读笔记
 
 **渐进迁移机制**，基于自适应反馈的跨媒体域一致性度量方法，根据目标域迁移难度的由易到难，迭代的选择训练样本。这种机制可以逐渐减少巨大的跨媒体域差异，增强模型的鲁棒性。
 
+<!-- more -->
+
 ## 模型
 
 ![1534990507803](/assets/images/Deep Cross-media Knowledge Transfer/1534990507803.png)

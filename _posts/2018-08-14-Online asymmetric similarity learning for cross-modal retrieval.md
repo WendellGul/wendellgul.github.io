@@ -17,6 +17,8 @@ Cross-Modal Online Similarity function learning（CMOS）论文学习笔记。
 
 这个在线相关学习问题通过**基于边距的在线PA（Passive-Aggressive）算法**来解决，并且对大规模数据集展现了很好的扩展性。文中接着在**再生核希尔伯特空间（reproducing kernel Hilbert space）**中线性组合多个**核函数**来学习相关函数。
 
+<!-- more -->
+
 ## 模型
 
 ![1535522774125](/assets/images/Online asymmetric similarity learning for cross-modal retrieval/1535522774125.png)

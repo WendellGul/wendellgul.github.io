@@ -32,6 +32,8 @@ tag:
 
 对于本题而言，当 `needle` 是空字符串时我们应当返回 0 。这与C语言的 [strstr()](https://baike.baidu.com/item/strstr/811469) 以及 Java的 [indexOf()](https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#indexOf(java.lang.String)) 定义相符。
 
+<!-- more -->
+
 ### 思路一
 
 判断两个字符串的长度，然后在循环中进行比较（循环次数是两个字符串长度的差值）。时间复杂度 $O(mn)$，$m,n$ 分别是两个字符串的长度。

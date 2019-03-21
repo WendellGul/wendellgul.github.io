@@ -23,6 +23,8 @@ tag:
 输出: 1->1->2->3->4->4->5->6
 ```
 
+<!-- more -->
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:

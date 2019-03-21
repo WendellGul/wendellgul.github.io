@@ -21,6 +21,8 @@ UGACH论文阅读笔记
 
 文中提出了一个基于**相关图**的方法来获得不同模态的相关性，模态不同但是拥有相同语义的数据之间的Hamming距离会更小。我们将相关图融合到GAN中，为GAN提供数据的相关关系，来提高跨模态检索的准确度。
 
+<!-- more -->
+
 ## 模型
 
 ![1533786687037](/assets/images/Unsupervised Generative Adversarial Cross-modal Hashing/1533786687037.png)

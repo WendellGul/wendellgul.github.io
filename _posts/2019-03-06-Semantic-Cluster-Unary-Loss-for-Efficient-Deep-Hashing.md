@@ -21,6 +21,8 @@ Semantic Cluster Unary Loss for Efficient Deep Hashing 论文阅读笔记。
 2. 提出了一个高效的有监督哈希算法，该算法通过 **Semantic Cluster Unary Loss（SCUL）** 进行训练，**SCUL** 是通过 **UUB** 修改得到的。**SCUL** 的时间复杂度只有 $O(n)$，所以能够大幅提升算法训练效率。
 3. 提出了一个结合 *UUB* 和 *Mean Teacher*（一个state-of-the-aet的半监督算法）的半监督哈希算法。
 
+<!-- more -->
+
 ### 有监督哈希的一元上界
 
 $n$ 个数据样本 $$\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_n$$，哈希学习的目标是学习从数据到哈希码的映射：$$H: \mathbf{x} \to \{-1, 1\}^r$$，其中 $r$ 是哈希码的长度。
