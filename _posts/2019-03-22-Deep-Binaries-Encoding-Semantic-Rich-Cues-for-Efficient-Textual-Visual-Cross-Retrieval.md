@@ -1,5 +1,5 @@
 ---
-title: Deep Binaries-Encoding Semantic-Rich Cues for Efficient Textual-Visual Cross Retrieval
+title: "Deep Binaries: Encoding Semantic-Rich Cues for Efficient Textual-Visual Cross Retrieval"
 category: Research Note
 date: 2019-03-22
 tag:
