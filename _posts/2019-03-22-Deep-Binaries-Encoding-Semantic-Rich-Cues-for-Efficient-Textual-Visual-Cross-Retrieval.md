@@ -22,13 +22,13 @@ Deep Binaries: Encoding Semantic-Rich Cues for Efficient Textual-Visual Cross Re
 1. 现有的跨模态哈希方法中，缺少对图片中细节区域的编码，这样得到的图片的表示不是最优的；
 2. 大部分的跨模态哈希方法是在粗粒度的文本（比如标签等）上进行的编码，对长句子文本的建模不适用。
 
-<center><img src="../Library/Application Support/typora-user-images/image-20190322144453383.png" style="zoom:50%"/></center>
+<center><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1g1borpthckj30u20oo7l4.jpg" style="zoom:50%"/></center>
 
 上图是传统跨模态哈希和本文提出的方法的区别。
 
 ### 模型
 
-![image-20190322145018773](../Library/Application Support/typora-user-images/image-20190322145018773.png)
+![image-20190322145018773](https://ws2.sinaimg.cn/large/006tKfTcgy1g1bosbbhfjj31qy0mu7n5.jpg)
 
 图像哈希网络 $$f(\cdot)$$ 由RPN，CNN和LSTM组成，有主到次的编码图片的各个区域；文本哈希网络 $$g(\cdot)$$ 由 text-CNN 组成。
 
@@ -70,7 +70,5 @@ $$
 ### 优化和实验
 
 见[论文](http://openaccess.thecvf.com/content_ICCV_2017/papers/Shen_Deep_Binaries_Encoding_ICCV_2017_paper.pdf)。
-
-
 
 
