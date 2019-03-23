@@ -102,4 +102,4 @@ class Solution:
 
 ### 相似问题
 
-1. [Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/)
+1. [Spiral Matrix II](https://wendellgul.github.io/leetcode/2019/03/23/LeetCode-Problem-59-Spiral-Matrix-II/)
