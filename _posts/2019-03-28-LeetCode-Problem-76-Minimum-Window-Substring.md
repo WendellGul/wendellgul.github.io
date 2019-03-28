@@ -33,9 +33,9 @@ tag:
 ```
 S = "ADOBECODEBANC", T = "ABC"
 S =    "ADOBECODEBANC"
-Step 1: i    j        j 移到此时满足条件，然后i右移
-     2:  i   j        此时窗口 i，j 不满足条件，j 右移
-     3:  i        j   j 移到此时满足题意，i 右移
+Step 1: i    j          j移到此时满足条件，然后i右移
+     2:  i   j          此时窗口 i，j 不满足条件，j 右移
+     3:  i        j     j移到此时满足题意，i 右移
      ...
 ```
 
