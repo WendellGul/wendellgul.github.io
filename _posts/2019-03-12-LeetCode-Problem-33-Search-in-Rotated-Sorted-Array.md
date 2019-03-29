@@ -55,6 +55,33 @@ class Solution:
         return -1
 ```
 
+### 思路二
+
+换一种写法，更好理解。
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, h = 0, len(nums) - 1
+        while l <= h:
+            m = (l + h) // 2
+            if target == nums[m]:
+                return m
+            # left part is sorted
+            if nums[0] <= nums[m]:
+                if nums[0] <= target < nums[m]:
+                    h = m - 1
+                else:
+                    l = m + 1
+            # right part is sorted
+            else:
+                if nums[m] < target <= nums[h]:
+                    l = m + 1
+                else:
+                    h = m - 1
+        return -1
+```
+
 ### 相似问题
 
 1. [Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
