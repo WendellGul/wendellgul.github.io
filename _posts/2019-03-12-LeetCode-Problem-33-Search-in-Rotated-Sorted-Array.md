@@ -84,5 +84,5 @@ class Solution:
 
 ### 相似问题
 
-1. [Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
+1. [Search in Rotated Sorted Array II](https://wendellgul.github.io/leetcode/2019/03/29/LeetCode-Problem-81-Search-in-Rotated-Sorted-Array-II/)
 2. [Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
