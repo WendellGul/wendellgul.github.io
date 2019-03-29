@@ -40,17 +40,14 @@ tag:
 ```python
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
-        if not head:
-            return head
-        dummy = ListNode(0)
-        dummy.next = head
-        tail, p = dummy, dummy.next  # tail 标记结果链表的尾指针
+        dummy = tail = ListNode(0)
+        dummy.next = p = head
         while p:
-            count = 1  # 标记重复的次数
+            count = 1
             while p.next and p.next.val == p.val:
                 count += 1
                 p = p.next
-            if count == 1:  # 不是重复元素
+            if count == 1:
                 tail.next = p
                 tail = tail.next
             p = p.next
