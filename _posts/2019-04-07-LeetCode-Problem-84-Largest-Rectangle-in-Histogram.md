@@ -93,6 +93,24 @@ class Solution:
 
 时间复杂度 $$O(n)$$。
 
+### 思路二
+
+换一种写法。
+
+```python
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        heights.append(0)
+        stack, rs = [-1], 0
+        for i in range(len(heights)):
+            while stack and heights[stack[-1]] > heights[i]:
+                h = heights[stack.pop()]
+                w = i - stack[-1] - 1
+                rs = max(rs, h * w)
+            stack.append(i)
+        return rs
+```
+
 ### 相似问题
 
 1. [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/)
