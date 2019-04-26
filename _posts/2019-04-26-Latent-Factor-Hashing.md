@@ -71,7 +71,7 @@ $$
 \Theta_{i j}=\frac{1}{2} \mathbf{U}_{i *} \mathbf{U}_{j *}^{T}
 $$
 
-相似的，$$p(\mathcal{S} | \mathbf{B}), p(\mathbf{B}), p(\mathbf{B} | \mathcal{S})$$ 被替换为 $$p(\mathcal{S} | \mathbf{U}), p(\mathbf{U}), p(\mathbf{U} | \mathcal{S})$$。文中使用正态分布模拟 $$\mathbf{U}$$ 的先验分布，即：
+相似的，$$p(\mathcal{S} \vert \mathbf{B}), p(\mathbf{B}), p(\mathbf{B} \vert \mathcal{S})​$$ 被替换为 $$p(\mathcal{S} \vert \mathbf{U}), p(\mathbf{U}), p(\mathbf{U} \vert \mathcal{S})​$$。文中使用正态分布模拟 $$\mathbf{U}​$$ 的先验分布，即：
 
 $$
 p(\mathbf{U})=\prod_{d=1}^{Q} \mathcal{N}\left(\mathbf{U}_{* d} | \mathbf{0}, \beta \mathbf{I}\right)
@@ -177,7 +177,7 @@ $$
 p(\mathbf{S} | \mathbf{U}, \mathbf{V})=\prod_{i, j=1}^{n} p\left(S_{i j} | \mathbf{U}, \mathbf{V}\right)
 $$
 
-其中 $$p\left(S_{i j} | \mathbf{U}, \mathbf{V}\right)$$ 定义为：
+其中 $$p\left(S_{i j} \vert \mathbf{U}, \mathbf{V}\right)$$ 定义为：
 
 $$
 p\left(S_{i j} | \mathbf{U}, \mathbf{V}\right)=\left\{\begin{array}{ll}{A_{i j},} & {\text { if } S_{i j}=1} \\ {1-A_{i j},} & {\text { otherwise }}\end{array}\right.
@@ -279,10 +279,13 @@ $$
 
 ### 参考文献
 
->1. Zhang, Peichao, et al. "Supervised hashing with latent factor models." *Proceedings of the 37th international ACM SIGIR conference on Research & development in information retrieval*. ACM, 2014.
->2. Jiang, Qing-Yuan, and Wu-Jun Li. "Discrete Latent Factor Model for Cross-Modal Hashing." *IEEE Transactions on Image Processing* (2019).
->3. https://en.wikipedia.org/wiki/Matrix_calculus
->4. https://en.wikipedia.org/wiki/Hessian_matrix
+>Zhang, Peichao, et al. "Supervised hashing with latent factor models." *Proceedings of the 37th international ACM SIGIR conference on Research & development in information retrieval*. ACM, 2014.
+>
+>Jiang, Qing-Yuan, and Wu-Jun Li. "Discrete Latent Factor Model for Cross-Modal Hashing." *IEEE Transactions on Image Processing* (2019).
+>
+>https://en.wikipedia.org/wiki/Matrix_calculus
+>
+>https://en.wikipedia.org/wiki/Hessian_matrix
 
 ### 附录
 
@@ -296,7 +299,7 @@ $$
 
 $$
 \begin{align}
-\frac{d \widetilde{L}(\mathbf{U}_{i*})}{d\mathbf{U}_{i*}^T} &= \frac{\part L}{\part \mathbf{U}_{i*}^T}(t) + \frac12 [(\mathbf{H}_i(t) + \mathbf{H}_i(t)^T)\mathbf{U}_{i*}^T - \mathbf{H}_i(t)\mathbf{U}_{i*}(t)^T - \mathbf{H}_{i}(t)^T\mathbf{U}_{i*}(t)^T] \\
+\frac{d \widetilde{L}(\mathbf{U}_{i*})}{d\mathbf{U}_{i*}^T} &= \frac{\partial L}{\partial \mathbf{U}_{i*}^T}(t) + \frac12 [(\mathbf{H}_i(t) + \mathbf{H}_i(t)^T)\mathbf{U}_{i*}^T - \mathbf{H}_i(t)\mathbf{U}_{i*}(t)^T - \mathbf{H}_{i}(t)^T\mathbf{U}_{i*}(t)^T] \\
 & = 0
 \end{align}
 $$
@@ -305,12 +308,12 @@ $$
 
 $$
 \begin{align}
-\frac{d \widetilde{L}(\mathbf{U}_{i*})}{d\mathbf{U}_{i*}^T} &= \frac{\part L}{\part \mathbf{U}_{i*}^T}(t) + \mathbf{H}_i(t)^T\mathbf{U}_{i*}^T - \mathbf{H}_{i}(t)^T\mathbf{U}_{i*}(t)^T = 0
+\frac{d \widetilde{L}(\mathbf{U}_{i*})}{d\mathbf{U}_{i*}^T} &= \frac{\partial L}{\partial \mathbf{U}_{i*}^T}(t) + \mathbf{H}_i(t)^T\mathbf{U}_{i*}^T - \mathbf{H}_{i}(t)^T\mathbf{U}_{i*}(t)^T = 0
 \end{align}
 $$
 
 则有：
 
 $$
-\mathbf{U}_{i*} = \mathbf{U}_{i*}(t) - [\frac{\part L}{\part \mathbf{U}_{i*}^T}(t)]^T\mathbf{H}_i(t)^{-1}
+\mathbf{U}_{i*} = \mathbf{U}_{i*}(t) - [\frac{\partial L}{\partial \mathbf{U}_{i*}^T}(t)]^T\mathbf{H}_i(t)^{-1}
 $$
