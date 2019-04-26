@@ -9,6 +9,8 @@ tag:
 
 本文就论文 Supervised Hashing with Latent Factor Models 和论文 Discrete Latent Factor Model for Cross-Modal Hashing 对 Latent Factor Hashing (LFH) 做简单总结。
 
+<!-- more -->
+
 <center><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2fv3ghax6j31hq0u07cx.jpg" /></center>
 
 <center><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2fveok5nlj31220asgnn.jpg" /></center>
