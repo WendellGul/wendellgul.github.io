@@ -11,9 +11,9 @@ tag:
 
 <!-- more -->
 
-<center><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2fv3ghax6j31hq0u07cx.jpg" /></center>
+<center><img src="https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-04-30-105051.jpg" /></center>
 
-<center><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2fveok5nlj31220asgnn.jpg" /></center>
+<center><img src="https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-04-30-105118.jpg" /></center>
 
 ### 泰勒公式
 
@@ -123,7 +123,7 @@ $$
 
 在本文中，作者提出了两种不同的优化策略（LFH-Full 和 LFH-Stochastic），两种方式分别使用全部的相似矩阵 $$\mathcal{S}$$ 和部分的相似矩阵（稀疏的相似矩阵 $$\mathcal{S}$$ 和对齐的相似矩阵 $$\mathcal{S}$$），如下图所示：
 
-<center><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2gcbth8nwj30vq0d4wff.jpg" /></center>
+<center><img src="https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-04-30-105145.jpg" /></center>
 
 三种方式更新的复杂度依次降低，在使用第三种对齐的部分相似矩阵时，由于保证了 $$\mathcal{S}$$ 的对称性，$$\mathbf{H}_i$$ 可以简化为：
 
@@ -283,9 +283,9 @@ $$
 >
 >Jiang, Qing-Yuan, and Wu-Jun Li. "Discrete Latent Factor Model for Cross-Modal Hashing." *IEEE Transactions on Image Processing* (2019).
 >
->https://en.wikipedia.org/wiki/Matrix_calculus
+>[https://en.wikipedia.org/wiki/Matrix_calculus](https://en.wikipedia.org/wiki/Matrix_calculus)
 >
->https://en.wikipedia.org/wiki/Hessian_matrix
+>[https://en.wikipedia.org/wiki/Hessian_matrix](https://en.wikipedia.org/wiki/Hessian_matrix)
 
 ### 附录
 
