@@ -60,4 +60,4 @@ class Solution:
 
 ### 相似问题
 
-1. [Unique Binary Search Trees II](https://leetcode.com/problems/unique-binary-search-trees-ii/)
+1. [Unique Binary Search Trees II](https://wendellgul.github.io/leetcode/2019/05/07/LeetCode-Problem-95-Unique-Binary-Search-Trees-II/)

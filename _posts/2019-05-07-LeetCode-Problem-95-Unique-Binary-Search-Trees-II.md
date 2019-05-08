@@ -71,5 +71,5 @@ class Solution:
 
 ### 相似问题
 
-1. [Unique Binary Search Trees](https://leetcode.com/problems/unique-binary-search-trees/)
+1. [Unique Binary Search Trees](https://wendellgul.github.io/leetcode/2019/05/08/LeetCode-Problem-96-Unique-Binary-Search-Trees/)
 2. [Different Ways to Add Parentheses](https://leetcode.com/problems/different-ways-to-add-parentheses/)
