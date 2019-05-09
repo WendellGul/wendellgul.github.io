@@ -71,6 +71,8 @@ $$
 
 传统的方法是在得到数据点的特征之后，使用无监督方法得到乘积量化的codebook，但是这样得到的codebook无法保证保留准确的语义信息，因此有研究提出通过端到端的方式来同时学习特征表示和乘积量化。
 
+模型的关键在于codebook是网络直接学到的，并且同时能够生成图片的特征表示，然后将学到的codebook运用到乘积量化方法中实现快速的图片检索。
+
 ![image-20181129172146726](https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-05-09-063118.jpg)
 
 > ECCV 2018
@@ -83,19 +85,6 @@ $$
   [\mathbf{x}_1, ..., \mathbf{x}_m, ..., \mathbf{x}_M]
   $$
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 * $$\mathbf{x}$$ 通过乘积量化近似表示为：
 
   $$
@@ -104,12 +93,13 @@ $$
 
   其中，$$q_m(\mathbf{x}_m) = \sum_k \mathbb{I}(k=k^*)\mathbf{c}_{mk}$$
 
-* $$\mathbf{c}_{mk}$$ 是第 $$m$$ 个codebook中的第 $$k$$ 个codeword，$$\mathbb{I}(\cdot)$$ 是指示函数，满足条件是值为1
-* $$k^* = \arg \min_k \|\mathbf{c}_{mk}, \mathbf{x}_m\|_2$$
+* $$\mathbf{c}_{mk}$$ 是第 $$m$$ 个codebook中的第 $$k$$ 个codeword，$$\mathbb{I}(\cdot)$$ 是指示函数，满足条件时值为1
+
+* $$k^* = \arg \min_k \Vert\mathbf{c}_{mk}, \mathbf{x}_m\Vert_2$$
 
 ### 从硬量化到软量化
 
-直接使用 $$\mathbb{I}(k=k^*)$$ 进行计算不能直接求导，所以不能直接整合到神经网络中。
+直接使用 $$\mathbb{I}(k=k^*)​$$ 进行计算不能直接求导，所以不能直接整合到神经网络中。
 
 将 $$\mathbb{I}(k=k^*)$$ 替换为
 
@@ -187,7 +177,7 @@ $$
 
 ### 编码和检索
 
-给定数据库中的一张图片 $$I$$，得到图像Embedding层的输出$$\mathbf{x} = [\mathbf{x}_1,...,\mathbf{x}_m, ...,\mathbf{x}_M]$$ 以及**produce quantization code** $$\mathbf{b} = [b_1, ..., b_m, ..., b_M]$$ ，其中
+给定数据库中的一张图片 $$I$$，得到图像Embedding层的输出$$\mathbf{x} = [\mathbf{x}_1,...,\mathbf{x}_m, ...,\mathbf{x}_M]$$ 以及**product quantization code** $$\mathbf{b} = [b_1, ..., b_m, ..., b_M]$$ ，其中
 
 $$
 b_m = \mathop{\arg \max}_k\langle \mathbf{x}_m, \mathbf{c}_{mk}\rangle
@@ -197,3 +187,5 @@ $$
 $$
 s(\mathbf{q}, \mathbf{b}) = \sum_{m=1}^M\langle \mathbf{q}_m, \mathbf{c}_{mb_m}\rangle
 $$
+
+因为使用乘积量化方式降低了计算距离的复杂度，因此能够加快检索速率。
