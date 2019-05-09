@@ -28,11 +28,11 @@ Production Quantization（乘积量化）方法小结。
 
 如果需要生成 $$M$$ 个codebook，每个codebook由 $$k$$ 个codeword组成，则将 $$n$$ 个数据中每个数据的特征划分成 $$M$$ 份，即得到如下图所示的结果（图中 $$n=50K, d=1024, M=8$$）：
 
-![image-20181129160828141](https://ws2.sinaimg.cn/large/006tNbRwgy1fxozxrtrlwj318e0lo413.jpg)
+![image-20181129160828141](https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-05-09-063008.jpg)
 
-此时得到 $$M$$ 份 $$d/ M$$ 维向量的集合，然后对每个集合进行k-means聚类，得到 $$k$$ 类，即 $$k$$ 的类别中心点，如下图所示（图中 $$k=256$$）：
+此时得到 $$M​$$ 份 $$d/ M​$$ 维向量的集合，然后对每个集合进行k-means聚类，得到 $$k​$$ 类，即 $$k​$$ 的类别中心点，如下图所示（图中 $$k=256​$$）：
 
-![image-20181129161135067](https://ws1.sinaimg.cn/large/006tNbRwly1fxp00wn6nij31ay0u0dk7.jpg)
+![image-20181129161135067](https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-05-09-063045.jpg)
 
 即得到了codebook。
 
@@ -71,7 +71,7 @@ $$
 
 传统的方法是在得到数据点的特征之后，使用无监督方法得到乘积量化的codebook，但是这样得到的codebook无法保证保留准确的语义信息，因此有研究提出通过端到端的方式来同时学习特征表示和乘积量化。
 
-![image-20181129172146726](https://ws1.sinaimg.cn/large/006tNbRwly1fxp21y6xwkj317c0jatcb.jpg)
+![image-20181129172146726](https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-05-09-063118.jpg)
 
 > ECCV 2018
 
@@ -137,7 +137,7 @@ $$
 
 ### 模型
 
-![image-20181129174955089](https://ws1.sinaimg.cn/large/006tNbRwly1fxp2v8rftfj30nm0bt77d.jpg)
+![image-20181129174955089](https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-05-09-063159.jpg)
 
 SPQ: Soft Product Quantization layer
 
