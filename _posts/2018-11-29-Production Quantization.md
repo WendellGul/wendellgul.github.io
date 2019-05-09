@@ -10,9 +10,9 @@ Production Quantization（乘积量化）方法小结。
 
 ## Production Quantization
 
-### production Quantization的目标
+### 目标
 
-对高维特征进行索引，减少特征存储消耗，同时加速检索速率。
+乘积量化的目标是对高维特征进行索引，减少特征存储消耗，同时加速检索速率。
 
 ### Production Quantization
 
@@ -30,7 +30,7 @@ Production Quantization（乘积量化）方法小结。
 
 ![image-20181129160828141](https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-05-09-063008.jpg)
 
-此时得到 $$M​$$ 份 $$d/ M​$$ 维向量的集合，然后对每个集合进行k-means聚类，得到 $$k​$$ 类，即 $$k​$$ 的类别中心点，如下图所示（图中 $$k=256​$$）：
+此时得到 $$M$$ 份 $$d/ M$$ 维向量的集合，然后对每个集合进行k-means聚类，得到 $$k$$ 类，即 $$k$$ 的类别中心点，如下图所示（图中 $$k=256$$）：
 
 ![image-20181129161135067](https://wendell-1251760226.cos.ap-beijing.myqcloud.com/2019-05-09-063045.jpg)
 
