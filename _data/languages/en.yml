@@ -52,6 +52,7 @@ page:
 footer:
   powered: "Powered by %s"
   theme: Theme
+  storage: Storage Service
 
 counter:
   tag_cloud:
