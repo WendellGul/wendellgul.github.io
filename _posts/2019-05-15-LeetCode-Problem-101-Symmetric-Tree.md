@@ -55,7 +55,7 @@ tag:
 
 如下图所示：
 
-<center><img src="https://leetcode.com/media/original_images/101_Symmetric_Mirror.png" width=50%/></center>
+<center><img src="https://leetcode.com/media/original_images/101_Symmetric_Mirror.png" style="width:50%"/></center>
 
 代码如下：
 
